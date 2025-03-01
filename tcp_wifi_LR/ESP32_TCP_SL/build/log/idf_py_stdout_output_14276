@@ -1,0 +1,115 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D D:\AIFARM\ESP_IDF\ESP32_TCP_SL\build\bootloader\esp-idf\esptool_py && d:\esp\tools\python_env\idf5.3_py3.11_env\Scripts\python.exe D:/esp/esp-idf/v5.3/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 D:/AIFARM/ESP_IDF/ESP32_TCP_SL/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[2/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+In file included from D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:12:
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c: In function 'wifi_event_handler':
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:81: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                                                 |
+      |                                                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:435:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  435 |         if (level==ESP_LOG_ERROR )          { esp_log_write(ESP_LOG_ERROR,      tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:9: note: in expansion of macro 'ESP_LOGI'
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+In file included from D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip_addr.h:43,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:46,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:9:
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:81: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                                                 |
+      |                                                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:436:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  436 |         else if (level==ESP_LOG_WARN )      { esp_log_write(ESP_LOG_WARN,       tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:9: note: in expansion of macro 'ESP_LOGI'
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:81: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                                                 |
+      |                                                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:437:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  437 |         else if (level==ESP_LOG_DEBUG )     { esp_log_write(ESP_LOG_DEBUG,      tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:9: note: in expansion of macro 'ESP_LOGI'
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:81: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                                                 |
+      |                                                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:438:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  438 |         else if (level==ESP_LOG_VERBOSE )   { esp_log_write(ESP_LOG_VERBOSE,    tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:9: note: in expansion of macro 'ESP_LOGI'
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:81: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                                                 |
+      |                                                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:439:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  439 |         else                                { esp_log_write(ESP_LOG_INFO,       tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:32:9: note: in expansion of macro 'ESP_LOGI'
+   32 |         ESP_LOGI(TAG, "Successfully connected to WIFI. Got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c: In function 'tcp_server_task':
+D:/AIFARM/ESP_IDF/ESP32_TCP_SL/main/main.c:92:71: warning: passing argument 3 of 'accept' from incompatible pointer type [-Wincompatible-pointer-types]
+   92 |         int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
+      |                                                                       ^~~~~~~~
+      |                                                                       |
+      |                                                                       uint * {aka unsigned int *}
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/include/lwip/sockets.h:15:65: note: expected 'socklen_t *' {aka 'long unsigned int *'} but argument is of type 'uint *' {aka 'unsigned int *'}
+   15 | static inline int accept(int s,struct sockaddr *addr,socklen_t *addrlen)
+      |                                                      ~~~~~~~~~~~^~~~~~~
+[3/7] Linking C static library esp-idf\main\libmain.a
+[4/7] Generating ld/sections.ld
+[5/7] Linking CXX executable ESP32_TCP_SL.elf
+[6/7] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated D:/AIFARM/ESP_IDF/ESP32_TCP_SL/build/ESP32_TCP_SL.bin
+[7/7] cmd.exe /C "cd /D D:\AIFARM\ESP_IDF\ESP32_TCP_SL\build\esp-idf\esptool_py && d:\esp\tools\python_env\idf5.3_py3.11_env\Scripts\python.exe D:/esp/esp-idf/v5.3/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app D:/AIFARM/ESP_IDF/ESP32_TCP_SL/build/partition_table/partition-table.bin D:/AIFARM/ESP_IDF/ESP32_TCP_SL/build/ESP32_TCP_SL.bin"
+ESP32_TCP_SL.bin binary size 0xbf070 bytes. Smallest app partition is 0x100000 bytes. 0x40f90 bytes (25%) free.

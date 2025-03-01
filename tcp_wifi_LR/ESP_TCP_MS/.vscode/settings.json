@@ -1,0 +1,10 @@
+{
+    "C_Cpp.intelliSenseEngine": "default",
+    "idf.espIdfPathWin": "d:\\esp\\esp-idf\\v5.3\\esp-idf",
+    "idf.openOcdConfigs": [
+        "board/esp32-wrover-kit-3.3v.cfg"
+    ],
+    "idf.toolsPathWin": "d:\\esp\\tools",
+    "idf.portWin": "COM7",
+    "idf.flashType": "UART"
+}
