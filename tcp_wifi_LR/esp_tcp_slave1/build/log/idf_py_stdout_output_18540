@@ -1,0 +1,1331 @@
+�ׁ�]� 2�L��:2���j
+
+�.��� �u]�ONߪTUQ�,���i0x�&B��I_�P*�e1MH_B�
+�j
+co�V�ͥp:�b��IWP'�5
+c��E��:0x�b�}�rv:��0��E��:0x�,c�����:0x�,h�E��:0x�,w}���:0x�
+���DIO	��ck VK�C!�+��0x3f����,lY˺��6�!�+�:0����000�k�i15��H������ 12���� 4!녑:0x��00�+��4
+�+��0x4�80�bb���3904C������0x40�06j
+[0;32mI (30) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Feb 28 2025 14:34:27[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v1.0[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=20094h (131220) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=000300bc vaddr=3ffb0000 size=03f18h ( 16152) load[0m
+[0;32mI (156) esp_image: segment 2: paddr=00033fdc vaddr=40080000 size=0c03ch ( 49212) load[0m
+[0;32mI (175) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=85638h (546360) map[0m
+[0;32mI (363) esp_image: segment 4: paddr=000c5660 vaddr=4008c03c size=0b41ch ( 46108) load[0m
+[0;32mI (393) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (393) boot: Disabling RNG early entropy source...[0m
+[0;32mI (405) cpu_start: Multicore app[0m
+[0;32mI (414) cpu_start: Pro cpu start user code[0m
+[0;32mI (414) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (414) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     esp_tcp_slave1[0m
+[0;32mI (422) app_init: App version:      9ee140e-dirty[0m
+[0;32mI (428) app_init: Compile time:     Mar  3 2025 08:55:11[0m
+[0;32mI (434) app_init: ELF file SHA256:  114a0db4f...[0m
+[0;32mI (439) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (445) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (450) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (455) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (460) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (467) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFB8258 len 00027DA8 (159 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (486) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40097458 len 00008BA8 (34 KiB): IRAM[0m
+[0;32mI (500) spi_flash: detected chip: generic[0m
+[0;32mI (503) spi_flash: flash io: dio[0m
+[0;33mW (507) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (521) main_task: Started on CPU0[0m
+[0;32mI (531) main_task: Calling app_main()[0m
+[0;32mI (561) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (571) wifi:wifi driver task: 3ffc0268, prio:23, stack:6656, core=0[0m
+[0;32mI (581) wifi:wifi firmware version: 6f4dea5[0m
+[0;32mI (581) wifi:wifi certification version: v7.0[0m
+[0;32mI (581) wifi:config NVS flash: enabled[0m
+[0;32mI (581) wifi:config nano formating: disabled[0m
+[0;32mI (591) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (591) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (601) wifi:Init management short buffer num: 32[0m
+[0;32mI (601) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (611) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (611) wifi:Init static rx buffer num: 10[0m
+[0;32mI (611) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (621) wifi_init: rx ba win: 6[0m
+[0;32mI (621) wifi_init: accept mbox: 6[0m
+[0;32mI (621) wifi_init: tcpip mbox: 32[0m
+[0;32mI (631) wifi_init: udp mbox: 6[0m
+[0;32mI (631) wifi_init: tcp mbox: 6[0m
+[0;32mI (641) wifi_init: tcp tx win: 5760[0m
+[0;32mI (641) wifi_init: tcp rx win: 5760[0m
+[0;32mI (641) wifi_init: tcp mss: 1440[0m
+[0;32mI (651) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (651) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (661) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (751) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (751) wifi:enable tsf[0m
+[0;32mI (751) wifi_station: Starting TCP server task[0m
+[0;32mI (751) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;32mI (751) wifi_station: Socket bound successfully to port 8888.[0m
+[0;32mI (761) main_task: Returned from app_main()[0m
+[0;32mI (761) wifi_station: Socket listening[0m
+[0;31mE (3171) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (3181) wifi_station: retry to connect to the AP[0m
+[0;31mE (5591) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (5591) wifi_station: retry to connect to the AP[0m
+[0;31mE (8001) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (8011) wifi_station: retry to connect to the AP[0m
+[0;31mE (10421) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (10421) wifi_station: retry to connect to the AP[0m
+[0;32mI (10491) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (10491) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (11501) wifi:state: auth -> init (0x200)[0m
+[0;32mI (11511) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (11511) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (11511) wifi_station: retry to connect to the AP[0m
+[0;31mE (13931) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (13931) wifi_station: retry to connect to the AP[0m
+[0;31mE (16341) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (16341) wifi_station: retry to connect to the AP[0m
+[0;31mE (18761) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (18761) wifi_station: retry to connect to the AP[0m
+[0;31mE (21171) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (21171) wifi_station: retry to connect to the AP[0m
+[0;31mE (23591) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (23591) wifi_station: retry to connect to the AP[0m
+[0;31mE (26001) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (26001) wifi_station: retry to connect to the AP[0m
+[0;32mI (26041) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (26041) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (26091) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (27091) wifi:state: assoc -> init (0x2700)[0m
+[0;32mI (27101) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (27101) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (27111) wifi_station: retry to connect to the AP[0m
+[0;31mE (29521) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (29521) wifi_station: retry to connect to the AP[0m
+[0;32mI (29641) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (29641) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (29771) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (29801) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (30401) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (30401) wifi:security: WPA2-PSK, phy: lr, rssi: -45[0m
+[0;32mI (30401) wifi:pm start, type: 1[0m
+
+[0;32mI (30401) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (30561) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (30561) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (38911) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (38911) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (240231) wifi:bcn_timeout,ap_probe_send_start[0m
+[0;32mI (242741) wifi:ap_probe_send over, resett wifi status to disassoc[0m
+[0;32mI (242741) wifi:state: run -> init (0xc800)[0m
+[0;32mI (242751) wifi:pm stop, total sleep time: 41447380 us / 212345991 us[0m
+
+[0;32mI (242751) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (242751) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (242761) wifi_station: retry to connect to the AP[0m
+[0;31mE (245171) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (245181) wifi_station: retry to connect to the AP[0m
+[0;31mE (247591) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (247591) wifi_station: retry to connect to the AP[0m
+[0;31mE (250001) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (250011) wifi_station: retry to connect to the AP[0m
+[0;31mE (252421) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (252421) wifi_station: retry to connect to the AP[0m
+[0;31mE (254831) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (254841) wifi_station: retry to connect to the AP[0m
+[0;32mI (254971) wifi:new:<1,0>, old:<6,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (254971) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (254991) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (256001) wifi:state: assoc -> init (0x2700)[0m
+[0;32mI (256011) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (256011) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (256011) wifi_station: retry to connect to the AP[0m
+[0;31mE (258431) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (258431) wifi_station: retry to connect to the AP[0m
+[0;31mE (260841) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (260851) wifi_station: retry to connect to the AP[0m
+[0;31mE (263261) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (263261) wifi_station: retry to connect to the AP[0m
+[0;31mE (265671) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (265681) wifi_station: retry to connect to the AP[0m
+[0;31mE (268091) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (268091) wifi_station: retry to connect to the AP[0m
+[0;32mI (268281) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (268281) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (268411) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (268421) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (268511) wifi:connected with ESP32, aid = 1, channel 1, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (268511) wifi:security: WPA2-PSK, phy: lr, rssi: -38[0m
+[0;32mI (268541) wifi:pm start, type: 1[0m
+
+[0;32mI (268541) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (268621) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (268621) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (270041) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (270041) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (291111) wifi:sta rx csa, newchan=6, old=1[0m
+[0;32mI (291511) wifi:switch to channel 6[0m
+[0;32mI (291511) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (294651) wifi:state: run -> init (0x4a0)[0m
+[0;32mI (294661) wifi:pm stop, total sleep time: 6355607 us / 26117001 us[0m
+
+[0;32mI (294661) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (294661) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (294671) wifi_station: retry to connect to the AP[0m
+[0;32mI (295291) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (295291) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (295301) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (295321) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (295341) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (295351) wifi:security: WPA2-PSK, phy: lr, rssi: -33[0m
+[0;32mI (295371) wifi:pm start, type: 1[0m
+
+[0;32mI (295371) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (295371) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (295381) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (296391) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (296391) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (296421) wifi_station: Client connected from IP: 192.168.4.1, port: 60825[0m
+[0;32mI (296421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (298561) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (300491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (302641) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (305461) wifi:starting SA query procedure with AP(cc:7b:5c:25:5b:55)[0m
+[0;32mI (305461) wifi:Send SA Query req with transaction id ce21[0m
+[0;32mI (305661) wifi:Send SA Query req with transaction id ce22[0m
+[0;32mI (305861) wifi:Send SA Query req with transaction id ce23[0m
+[0;32mI (306061) wifi:Send SA Query req with transaction id ce24[0m
+[0;32mI (306261) wifi:Send SA Query req with transaction id ce25[0m
+[0;32mI (306461) wifi:Send SA Query req with transaction id ce26[0m
+[0;32mI (306481) wifi:No response to 6 SA Queries, reset connection sending disassoc[0m
+[0;32mI (306481) wifi:state: run -> init (0xd100)[0m
+[0;32mI (306501) wifi:pm stop, total sleep time: 4167954 us / 11127567 us[0m
+
+[0;32mI (306501) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (306501) wifi_station: recv failed: errno 113[0m
+[0;31mE (306501) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (306511) wifi_station: retry to connect to the AP[0m
+[0;32mI (306551) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (306551) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (306591) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (306631) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (307291) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (307291) wifi:security: WPA2-PSK, phy: lr, rssi: -31[0m
+[0;32mI (307301) wifi:pm start, type: 1[0m
+
+[0;32mI (307301) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (307311) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (307311) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (308821) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (308821) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (323731) wifi:state: run -> init (0xe00)[0m
+[0;32mI (323741) wifi:pm stop, total sleep time: 7510561 us / 16440211 us[0m
+
+[0;32mI (323741) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (323741) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (323751) wifi_station: retry to connect to the AP[0m
+[0;32mI (323771) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (323771) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (323801) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (323821) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (324441) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (324441) wifi:security: WPA2-PSK, phy: lr, rssi: -40[0m
+[0;32mI (324441) wifi:pm start, type: 1[0m
+
+[0;32mI (324441) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (324501) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (324501) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (325451) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (325451) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (325521) wifi:state: run -> init (0x4a0)[0m
+[0;32mI (325531) wifi:pm stop, total sleep time: 479484 us / 1084459 us[0m
+
+[0;32mI (325531) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (325531) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (325541) wifi_station: retry to connect to the AP[0m
+[0;32mI (325561) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (325561) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (325571) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (325601) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (325631) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (325631) wifi:security: WPA2-PSK, phy: lr, rssi: -39[0m
+[0;32mI (325631) wifi:pm start, type: 1[0m
+
+[0;32mI (325641) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (325731) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (325731) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (326641) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (326641) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (326871) wifi_station: Client connected from IP: 192.168.4.1, port: 61703[0m
+[0;32mI (326881) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (329011) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (331101) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (334541) wifi:state: run -> init (0xe00)[0m
+[0;32mI (334551) wifi:pm stop, total sleep time: 3427863 us / 8912138 us[0m
+
+[0;32mI (334551) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (334551) wifi_station: recv failed: errno 113[0m
+[0;31mE (334551) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (334571) wifi_station: retry to connect to the AP[0m
+[0;31mE (336981) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (336981) wifi_station: retry to connect to the AP[0m
+[0;31mE (339391) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (339401) wifi_station: retry to connect to the AP[0m
+[0;31mE (341811) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (341811) wifi_station: retry to connect to the AP[0m
+[0;32mI (341831) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (341831) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (341851) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (341871) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (341901) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (341901) wifi:security: WPA2-PSK, phy: lr, rssi: -41[0m
+[0;32mI (341901) wifi:pm start, type: 1[0m
+
+[0;32mI (341901) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (341991) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (341991) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (342621) wifi:state: run -> init (0x4a0)[0m
+[0;32mI (342631) wifi:pm stop, total sleep time: 259328 us / 722154 us[0m
+
+[0;32mI (342631) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (342631) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (342641) wifi_station: retry to connect to the AP[0m
+[0;32mI (342651) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (342661) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (342681) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (342691) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (342721) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (342721) wifi:security: WPA2-PSK, phy: lr, rssi: -42[0m
+[0;32mI (342731) wifi:pm start, type: 1[0m
+
+[0;32mI (342731) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (342731) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (342741) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (343751) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (343751) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (343981) wifi_station: Client connected from IP: 192.168.4.1, port: 52751[0m
+[0;32mI (343981) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (346111) wifi_station: Received 22 bytes: Hello from TCP client![0m
+eW�J����L'���7�A�r.���BB���ʽ��j�b������E��}FP*�e1���%=���H(ݮV��i� b�S��ł����c��E����A�)}d�������E����A�i�0E������	K��.W��A�����.���A�!�ѥ�q��+̀V��2�!�+њ�M���0���9K���S�l�i�Q������K�i������� ���ʒ��o[����i�Q�����i�#!���'��0��4��kٚ���!���y��Q�°*
+[0;32mI (30) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Feb 28 2025 14:34:27[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v1.0[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=20094h (131220) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=000300bc vaddr=3ffb0000 size=03f18h ( 16152) load[0m
+[0;32mI (155) esp_image: segment 2: paddr=00033fdc vaddr=40080000 size=0c03ch ( 49212) load[0m
+[0;32mI (175) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=85638h (546360) map[0m
+[0;32mI (362) esp_image: segment 4: paddr=000c5660 vaddr=4008c03c size=0b41ch ( 46108) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (405) cpu_start: Multicore app[0m
+[0;32mI (414) cpu_start: Pro cpu start user code[0m
+[0;32mI (414) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (414) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     esp_tcp_slave1[0m
+[0;32mI (422) app_init: App version:      9ee140e-dirty[0m
+[0;32mI (428) app_init: Compile time:     Mar  3 2025 08:55:11[0m
+[0;32mI (434) app_init: ELF file SHA256:  114a0db4f...[0m
+[0;32mI (439) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (445) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (450) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (455) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (460) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (467) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFB8258 len 00027DA8 (159 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40097458 len 00008BA8 (34 KiB): IRAM[0m
+[0;32mI (500) spi_flash: detected chip: generic[0m
+[0;32mI (503) spi_flash: flash io: dio[0m
+[0;33mW (507) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (521) main_task: Started on CPU0[0m
+[0;32mI (531) main_task: Calling app_main()[0m
+[0;32mI (561) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (571) wifi:wifi driver task: 3ffc0268, prio:23, stack:6656, core=0[0m
+[0;32mI (581) wifi:wifi firmware version: 6f4dea5[0m
+[0;32mI (581) wifi:wifi certification version: v7.0[0m
+[0;32mI (581) wifi:config NVS flash: enabled[0m
+[0;32mI (581) wifi:config nano formating: disabled[0m
+[0;32mI (591) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (591) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (601) wifi:Init management short buffer num: 32[0m
+[0;32mI (601) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (611) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (611) wifi:Init static rx buffer num: 10[0m
+[0;32mI (611) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (621) wifi_init: rx ba win: 6[0m
+[0;32mI (621) wifi_init: accept mbox: 6[0m
+[0;32mI (621) wifi_init: tcpip mbox: 32[0m
+[0;32mI (631) wifi_init: udp mbox: 6[0m
+[0;32mI (631) wifi_init: tcp mbox: 6[0m
+[0;32mI (641) wifi_init: tcp tx win: 5760[0m
+[0;32mI (641) wifi_init: tcp rx win: 5760[0m
+[0;32mI (641) wifi_init: tcp mss: 1440[0m
+[0;32mI (651) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (651) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (661) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;33mW (741) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+[0;32mI (791) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (791) wifi:enable tsf[0m
+[0;32mI (791) wifi_station: Starting TCP server task[0m
+[0;32mI (801) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;32mI (801) wifi_station: Socket bound successfully to port 8888.[0m
+[0;32mI (801) main_task: Returned from app_main()[0m
+[0;32mI (811) wifi_station: Socket listening[0m
+[0;32mI (821) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (821) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (831) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (841) wifi:Association refused temporarily time 1500, comeback time 1600 (TUs)[0m
+[0;32mI (2481) wifi:state: assoc -> assoc (0x0)[0m
+[0;32mI (2491) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (2521) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (2521) wifi:security: WPA2-PSK, phy: lr, rssi: -63[0m
+[0;32mI (2531) wifi:pm start, type: 1[0m
+
+[0;32mI (2531) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (2601) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (2601) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (3541) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (3541) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+�ׁJ]��0L������S���.���LB=WQ���%S�Uɒ��W���3BZ��e��e1���%=��ʈc�˥g�i�b�S����xYVH(ѫE�v��A0	}��W���0I��.W�x�bc.z��W���0���䮗����}��W���0C��KպT�Q�,����VKi�!���'�M���������Ȭ+�:�ѐ�����kٚ���4�!�A���嬊�������!���'�Q�°���������0��4���9��9���e�W���0�¶j
+[0;32mI (30) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Feb 28 2025 14:34:27[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v1.0[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=20094h (131220) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=000300bc vaddr=3ffb0000 size=03f18h ( 16152) load[0m
+[0;32mI (155) esp_image: segment 2: paddr=00033fdc vaddr=40080000 size=0c03ch ( 49212) load[0m
+[0;32mI (175) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=85638h (546360) map[0m
+[0;32mI (362) esp_image: segment 4: paddr=000c5660 vaddr=4008c03c size=0b41ch ( 46108) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (405) cpu_start: Multicore app[0m
+[0;32mI (414) cpu_start: Pro cpu start user code[0m
+[0;32mI (414) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (414) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     esp_tcp_slave1[0m
+[0;32mI (422) app_init: App version:      9ee140e-dirty[0m
+[0;32mI (428) app_init: Compile time:     Mar  3 2025 08:55:11[0m
+[0;32mI (434) app_init: ELF file SHA256:  114a0db4f...[0m
+[0;32mI (439) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (445) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (450) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (455) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (460) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (467) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFB8258 len 00027DA8 (159 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40097458 len 00008BA8 (34 KiB): IRAM[0m
+[0;32mI (500) spi_flash: detected chip: generic[0m
+[0;32mI (503) spi_flash: flash io: dio[0m
+[0;33mW (507) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (521) main_task: Started on CPU0[0m
+[0;32mI (531) main_task: Calling app_main()[0m
+[0;32mI (561) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (571) wifi:wifi driver task: 3ffc0268, prio:23, stack:6656, core=0[0m
+[0;32mI (581) wifi:wifi firmware version: 6f4dea5[0m
+[0;32mI (581) wifi:wifi certification version: v7.0[0m
+[0;32mI (581) wifi:config NVS flash: enabled[0m
+[0;32mI (581) wifi:config nano formating: disabled[0m
+[0;32mI (591) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (591) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (601) wifi:Init management short buffer num: 32[0m
+[0;32mI (601) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (611) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (611) wifi:Init static rx buffer num: 10[0m
+[0;32mI (611) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (621) wifi_init: rx ba win: 6[0m
+[0;32mI (621) wifi_init: accept mbox: 6[0m
+[0;32mI (621) wifi_init: tcpip mbox: 32[0m
+[0;32mI (631) wifi_init: udp mbox: 6[0m
+[0;32mI (631) wifi_init: tcp mbox: 6[0m
+[0;32mI (641) wifi_init: tcp tx win: 5760[0m
+[0;32mI (641) wifi_init: tcp rx win: 5760[0m
+[0;32mI (641) wifi_init: tcp mss: 1440[0m
+[0;32mI (651) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (651) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (661) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (751) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (751) wifi:enable tsf[0m
+[0;32mI (751) wifi_station: Starting TCP server task[0m
+[0;32mI (751) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;32mI (751) wifi_station: Socket bound successfully to port 8888.[0m
+[0;32mI (761) main_task: Returned from app_main()[0m
+[0;32mI (761) wifi_station: Socket listening[0m
+[0;32mI (771) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (781) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (791) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (801) wifi:Association refused temporarily time 1500, comeback time 1600 (TUs)[0m
+[0;32mI (2441) wifi:state: assoc -> assoc (0x0)[0m
+[0;32mI (2451) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (2491) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (2491) wifi:security: WPA2-PSK, phy: lr, rssi: -56[0m
+[0;32mI (2501) wifi:pm start, type: 1[0m
+
+[0;32mI (2501) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (2541) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (2541) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (3511) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (3511) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+�w�J� &�򠂺�Ҫ�C�H(����� ��]����SQU�	ݯ���E3BZ��e��e1���%=��J�c�˥ݳ� �	�A�ץ�x���c��%ɶ�a�)}d.��x���E�v'�A0)�A�V�i�A�����������}��W���0���պT�Q��ͫ����F�l�8V�x�֙A�&b�n�S����+Ѻ��0���0���i�͓��A���Ŭ��������!�Ť'�Q�°�,�Y���!����q�°���Y�����!������0���j
+[0;32mI (30) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Feb 28 2025 14:34:27[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v1.0[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=20094h (131220) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=000300bc vaddr=3ffb0000 size=03f18h ( 16152) load[0m
+[0;32mI (155) esp_image: segment 2: paddr=00033fdc vaddr=40080000 size=0c03ch ( 49212) load[0m
+[0;32mI (175) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=85638h (546360) map[0m
+[0;32mI (362) esp_image: segment 4: paddr=000c5660 vaddr=4008c03c size=0b41ch ( 46108) load[0m
+[0;32mI (392) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (392) boot: Disabling RNG early entropy source...[0m
+[0;32mI (405) cpu_start: Multicore app[0m
+[0;32mI (414) cpu_start: Pro cpu start user code[0m
+[0;32mI (414) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (414) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     esp_tcp_slave1[0m
+[0;32mI (422) app_init: App version:      9ee140e-dirty[0m
+[0;32mI (428) app_init: Compile time:     Mar  3 2025 08:55:11[0m
+[0;32mI (434) app_init: ELF file SHA256:  114a0db4f...[0m
+[0;32mI (439) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (445) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (450) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (455) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (460) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (467) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (473) heap_init: At 3FFB8258 len 00027DA8 (159 KiB): DRAM[0m
+[0;32mI (479) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (492) heap_init: At 40097458 len 00008BA8 (34 KiB): IRAM[0m
+[0;32mI (500) spi_flash: detected chip: generic[0m
+[0;32mI (503) spi_flash: flash io: dio[0m
+[0;33mW (507) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (521) main_task: Started on CPU0[0m
+[0;32mI (531) main_task: Calling app_main()[0m
+[0;32mI (561) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (571) wifi:wifi driver task: 3ffc0268, prio:23, stack:6656, core=0[0m
+[0;32mI (581) wifi:wifi firmware version: 6f4dea5[0m
+[0;32mI (581) wifi:wifi certification version: v7.0[0m
+[0;32mI (581) wifi:config NVS flash: enabled[0m
+[0;32mI (581) wifi:config nano formating: disabled[0m
+[0;32mI (591) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (591) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (601) wifi:Init management short buffer num: 32[0m
+[0;32mI (601) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (611) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (611) wifi:Init static rx buffer num: 10[0m
+[0;32mI (611) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (621) wifi_init: rx ba win: 6[0m
+[0;32mI (621) wifi_init: accept mbox: 6[0m
+[0;32mI (621) wifi_init: tcpip mbox: 32[0m
+[0;32mI (631) wifi_init: udp mbox: 6[0m
+[0;32mI (631) wifi_init: tcp mbox: 6[0m
+[0;32mI (641) wifi_init: tcp tx win: 5760[0m
+[0;32mI (641) wifi_init: tcp rx win: 5760[0m
+[0;32mI (641) wifi_init: tcp mss: 1440[0m
+[0;32mI (651) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (651) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (661) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (751) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (751) wifi:enable tsf[0m
+[0;32mI (751) wifi_station: Starting TCP server task[0m
+[0;32mI (751) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;32mI (751) wifi_station: Socket bound successfully to port 8888.[0m
+[0;32mI (761) main_task: Returned from app_main()[0m
+[0;32mI (761) wifi_station: Socket listening[0m
+[0;32mI (781) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (781) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (791) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (801) wifi:Association refused temporarily time 1500, comeback time 1600 (TUs)[0m
+[0;32mI (2441) wifi:state: assoc -> assoc (0x0)[0m
+[0;32mI (2451) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (2481) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (2481) wifi:security: WPA2-PSK, phy: lr, rssi: -64[0m
+[0;32mI (2481) wifi:pm start, type: 1[0m
+
+[0;32mI (2481) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (2501) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (2511) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (3491) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (3491) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (19401) wifi:state: run -> init (0xe00)[0m
+[0;32mI (19421) wifi:pm stop, total sleep time: 5237616 us / 16936330 us[0m
+
+[0;32mI (19421) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (19421) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (19431) wifi_station: retry to connect to the AP[0m
+[0;32mI (19441) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (19441) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (19471) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (19481) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (19511) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (19511) wifi:security: WPA2-PSK, phy: lr, rssi: -41[0m
+[0;32mI (19521) wifi:pm start, type: 1[0m
+
+[0;32mI (19521) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (19611) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (19611) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (20531) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (20531) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (20561) wifi_station: Client connected from IP: 192.168.4.1, port: 61446[0m
+[0;32mI (20561) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (22561) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (24731) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (26571) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (28821) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (30661) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (32711) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (34761) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (36811) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (38651) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (40711) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (42651) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (44801) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (811) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (811) wifi:enable tsf[0m
+[0;32mI (811) wifi_station: Starting TCP server task[0m
+[0;32mI (811) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;32mI (811) wifi_station: Socket bound successfully to port 8888.[0m
+[0;32mI (821) main_task: Returned from app_main()[0m
+[0;32mI (821) wifi_station: Socket listening[0m
+[0;31mE (3231) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (3231) wifi_station: retry to connect to the AP[0m
+[0;31mE (5651) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (5651) wifi_station: retry to connect to the AP[0m
+[0;31mE (8061) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (8061) wifi_station: retry to connect to the AP[0m
+[0;31mE (10481) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (10481) wifi_station: retry to connect to the AP[0m
+[0;31mE (12891) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (12901) wifi_station: retry to connect to the AP[0m
+[0;31mE (15311) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (15311) wifi_station: retry to connect to the AP[0m
+[0;31mE (17721) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (17731) wifi_station: retry to connect to the AP[0m
+[0;31mE (20141) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (20141) wifi_station: retry to connect to the AP[0m
+[0;31mE (22551) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (22561) wifi_station: retry to connect to the AP[0m
+[0;31mE (24971) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (24971) wifi_station: retry to connect to the AP[0m
+[0;31mE (27391) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (27391) wifi_station: retry to connect to the AP[0m
+[0;31mE (29801) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (29801) wifi_station: retry to connect to the AP[0m
+[0;31mE (32221) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (32221) wifi_station: retry to connect to the AP[0m
+[0;31mE (34631) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (34641) wifi_station: retry to connect to the AP[0m
+[0;31mE (37051) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (37051) wifi_station: retry to connect to the AP[0m
+[0;31mE (39461) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (39471) wifi_station: retry to connect to the AP[0m
+[0;31mE (41881) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (41881) wifi_station: retry to connect to the AP[0m
+[0;31mE (44291) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (44301) wifi_station: retry to connect to the AP[0m
+[0;31mE (46711) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (46711) wifi_station: retry to connect to the AP[0m
+[0;31mE (49131) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (49131) wifi_station: retry to connect to the AP[0m
+[0;31mE (51541) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (51541) wifi_station: retry to connect to the AP[0m
+[0;31mE (53961) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (53961) wifi_station: retry to connect to the AP[0m
+[0;31mE (56371) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (56381) wifi_station: retry to connect to the AP[0m
+[0;31mE (58791) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (58791) wifi_station: retry to connect to the AP[0m
+[0;31mE (61201) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (61211) wifi_station: retry to connect to the AP[0m
+[0;31mE (63621) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (63621) wifi_station: retry to connect to the AP[0m
+[0;31mE (66041) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (66041) wifi_station: retry to connect to the AP[0m
+[0;31mE (68451) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (68451) wifi_station: retry to connect to the AP[0m
+[0;31mE (70871) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (70871) wifi_station: retry to connect to the AP[0m
+[0;31mE (73281) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (73291) wifi_station: retry to connect to the AP[0m
+[0;31mE (75701) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (75701) wifi_station: retry to connect to the AP[0m
+[0;31mE (78111) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (78121) wifi_station: retry to connect to the AP[0m
+[0;31mE (80531) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (80531) wifi_station: retry to connect to the AP[0m
+[0;31mE (82941) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (82951) wifi_station: retry to connect to the AP[0m
+[0;32mI (83081) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (83081) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (83091) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (83101) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (83141) wifi:connected with ESP32, aid = 1, channel 1, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (83141) wifi:security: WPA2-PSK, phy: lr, rssi: -34[0m
+[0;32mI (83161) wifi:pm start, type: 1[0m
+
+[0;32mI (83161) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (83511) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (83511) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (84161) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (84161) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (877391) wifi:bcn_timeout,ap_probe_send_start[0m
+[0;32mI (879891) wifi:ap_probe_send over, resett wifi status to disassoc[0m
+[0;32mI (879891) wifi:state: run -> init (0xc800)[0m
+[0;32mI (879911) wifi:pm stop, total sleep time: 181821290 us / 796747925 us[0m
+
+[0;32mI (879911) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (879911) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (879921) wifi_station: retry to connect to the AP[0m
+[0;31mE (882331) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (882341) wifi_station: retry to connect to the AP[0m
+[0;31mE (884751) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (884751) wifi_station: retry to connect to the AP[0m
+[0;31mE (887161) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (887171) wifi_station: retry to connect to the AP[0m
+[0;31mE (889581) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (889581) wifi_station: retry to connect to the AP[0m
+[0;31mE (891991) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (892001) wifi_station: retry to connect to the AP[0m
+[0;32mI (892011) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (892011) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (893021) wifi:state: auth -> init (0x200)[0m
+[0;32mI (893031) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (893031) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (893031) wifi_station: retry to connect to the AP[0m
+[0;31mE (895451) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (895451) wifi_station: retry to connect to the AP[0m
+[0;31mE (897861) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (897861) wifi_station: retry to connect to the AP[0m
+[0;31mE (900281) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (900281) wifi_station: retry to connect to the AP[0m
+[0;31mE (902691) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (902691) wifi_station: retry to connect to the AP[0m
+[0;31mE (905111) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (905111) wifi_station: retry to connect to the AP[0m
+[0;32mI (905181) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (905181) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (906191) wifi:state: auth -> init (0x200)[0m
+[0;32mI (906201) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (906201) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (906201) wifi_station: retry to connect to the AP[0m
+[0;31mE (908621) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (908621) wifi_station: retry to connect to the AP[0m
+[0;32mI (908641) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (908641) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (909651) wifi:state: auth -> init (0x200)[0m
+[0;32mI (909661) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (909661) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (909661) wifi_station: retry to connect to the AP[0m
+[0;31mE (912081) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (912081) wifi_station: retry to connect to the AP[0m
+[0;31mE (914491) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (914491) wifi_station: retry to connect to the AP[0m
+[0;31mE (916911) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (916911) wifi_station: retry to connect to the AP[0m
+[0;31mE (919321) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (919321) wifi_station: retry to connect to the AP[0m
+[0;31mE (921741) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (921741) wifi_station: retry to connect to the AP[0m
+[0;31mE (924151) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (924161) wifi_station: retry to connect to the AP[0m
+[0;31mE (926571) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (926571) wifi_station: retry to connect to the AP[0m
+[0;32mI (926611) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (926611) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (927621) wifi:state: auth -> init (0x200)[0m
+[0;32mI (927631) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (927631) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (927631) wifi_station: retry to connect to the AP[0m
+[0;31mE (930051) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (930051) wifi_station: retry to connect to the AP[0m
+[0;32mI (930061) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (930061) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (931071) wifi:state: auth -> init (0x200)[0m
+[0;32mI (931081) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (931081) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (931081) wifi_station: retry to connect to the AP[0m
+[0;31mE (933501) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (933501) wifi_station: retry to connect to the AP[0m
+[0;32mI (934121) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (934121) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (934141) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (934161) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (934201) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (934201) wifi:security: WPA2-PSK, phy: lr, rssi: -37[0m
+[0;32mI (934221) wifi:pm start, type: 1[0m
+
+[0;32mI (934221) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (934291) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (934291) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (935221) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (935221) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (935321) wifi_station: Client connected from IP: 192.168.4.1, port: 64908[0m
+[0;32mI (935321) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (937361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (939411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (941361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (943511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (945361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (947401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (949351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (951501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (953551) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (955551) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (957331) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (959481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (961431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (963511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (965531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (967471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (969521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (971471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (973411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (975461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (977511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (979451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (981401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (983341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (985501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (987341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (989591) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (991351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (993381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (995431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (997481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (999421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1001371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1003521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1005361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1007421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1009461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1011511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1013451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1015601) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1017341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1019391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1021471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1023591) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1025431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1027511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1029431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1031481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1033421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1035361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1037521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1039561) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1041411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1043351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1045461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1047351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1049391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1051441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1053491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1055331) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1057581) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1059431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1061481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1063431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1065371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1067421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1069461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1071511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1073351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1075401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1077451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1079501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1081451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1083491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1085441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1087491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1089541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1091381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1093421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1095371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1097421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1099361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1101621) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1103471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1105521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1107351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1109401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1111351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1113391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1115551) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1117391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1119331) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1121381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1123531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1125381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1127421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1129471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1131521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1133571) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1135411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1137361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1139511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1141551) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1143411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1145361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1147491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1149341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1151391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1153541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1155381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1157531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1159371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1161551) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1163471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1165421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1167361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1169411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1171361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1173511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1175451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1177501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1179451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1181401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1183341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1185591) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1187531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1189481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1191531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1193381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1195421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1197371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1199511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1201361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1203411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1205351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1207411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1209571) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1211601) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1213441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1215391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1217531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1219381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1221681) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1223391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1225441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1227581) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1229421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1231361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1233411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1235491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1237401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1239451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1241411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1243411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1245391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1247341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1249491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1251461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1253381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1255431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1257371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1259521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1261361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1263621) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1265471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1267411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1269361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1271401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1273351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1275401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1277341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1279391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1281441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1283481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1285531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1287371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1289431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1291471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1293421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1295361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1297411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1299361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1301501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1303351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1305401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1307341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1309391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1311541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1313381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1315641) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1317381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1319431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1321481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1323531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1325471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1327521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1329361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1331411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1333451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1335501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1337451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1339601) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1341341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1343491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1345541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1347381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1349441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1351451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1353531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1355571) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1357621) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1359361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1361421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1363361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1365401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1367451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1369501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1371341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1373391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1375341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1377391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1379541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1381581) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1383431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1385481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1387421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1389371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1391421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1393471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1395511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1397571) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1399611) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1401351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1403401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1405451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1407391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1409641) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1411491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1413531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1415501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1417421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1419481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1421421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1423361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1425421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1427461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1429511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1431561) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1433401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1435351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1437391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1439341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1441391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1443641) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1445381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1447531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1449371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1451421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1453371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1455431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1457361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1459411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1461371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1463501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1467811) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1468011) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1469351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1471491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1473471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1475591) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1477431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1479481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1481541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1483371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1485421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1487371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1489521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1491381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1493681) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1495461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1497501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1499351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1501401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1503441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1505491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1507541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1509591) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1511431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1513481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1515521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1517471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1519421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1521391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1523561) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1525361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1527401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1529351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1531501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1533461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1535611) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1537651) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1539491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1541441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1543381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1545431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1547421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1549491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1551371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1553411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1555361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1557411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1559351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1561411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1563351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1565401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1567341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1569391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1571641) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1573391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1575531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1577411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1579421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1581471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1583421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1585361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1587411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1589461) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1591511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1593351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1595401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1597341) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1599401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1601441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1603391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1605431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1607481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1609431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1611631) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1613421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1615471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1617531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1619361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1621621) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1625711) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1625911) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1627351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1629601) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1631471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1633391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1635441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1637391) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1639531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1641381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1643421) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1645581) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1647631) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1649471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1651511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1653361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1655411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1657351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1659501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1661451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1663401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1665441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1667491) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1669541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1671601) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1673541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1675481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1677531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1679571) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1681411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1683371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1685511) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1687361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1689401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1691351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1693501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1695551) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1697591) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1699441) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1701431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1703431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1705381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1707531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1709481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1711521) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1713471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1715621) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1717471) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1719411) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1721361) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1723401) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1725351) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1727501) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1729451) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1731631) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1733541) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1735381) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1737431) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1739481) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1741531) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1743371) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1750801) wifi:bcn_timeout,ap_probe_send_start[0m
+[0;32mI (1753301) wifi:ap_probe_send over, resett wifi status to disassoc[0m
+[0;32mI (1753301) wifi:state: run -> init (0xc800)[0m
+[0;32mI (1753311) wifi:pm stop, total sleep time: 497305609 us / 819087615 us[0m
+
+[0;32mI (1753311) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (1753321) wifi_station: recv failed: errno 113[0m
+[0;31mE (1753321) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1753331) wifi_station: retry to connect to the AP[0m
+[0;31mE (1755741) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1755741) wifi_station: retry to connect to the AP[0m
+[0;31mE (1758161) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1758161) wifi_station: retry to connect to the AP[0m
+[0;31mE (1760571) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1760581) wifi_station: retry to connect to the AP[0m
+[0;31mE (1762991) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1762991) wifi_station: retry to connect to the AP[0m
+[0;31mE (1765401) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1765411) wifi_station: retry to connect to the AP[0m
+[0;32mI (1765431) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1765431) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1765441) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1765571) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (1775571) wifi:state: run -> init (0xcc00)[0m
+[0;32mI (1775581) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (1775581) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1775581) wifi_station: retry to connect to the AP[0m
+[0;31mE (1778001) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (1778001) wifi_station: retry to connect to the AP[0m
+[0;32mI (1778021) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1778021) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1778031) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1778041) wifi:Association refused temporarily time 1500, comeback time 1600 (TUs)[0m
+[0;32mI (1779681) wifi:state: assoc -> assoc (0x0)[0m
+[0;32mI (1779691) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (1779721) wifi:connected with ESP32, aid = 1, channel 6, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (1779721) wifi:security: WPA2-PSK, phy: lr, rssi: -35[0m
+[0;32mI (1779731) wifi:pm start, type: 1[0m
+
+[0;32mI (1779731) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (1779811) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (1779811) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (1780741) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (1780741) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (1780771) wifi_station: Client connected from IP: 192.168.4.1, port: 63484[0m
+[0;32mI (1780771) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1782781) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1784831) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1786781) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1788821) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1790871) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1792831) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1794971) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1797021) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1799071) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1800841) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1802961) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1804801) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1807051) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1808791) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1810941) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1812791) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1814941) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1816781) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1818931) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1820981) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1822821) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1824871) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1826921) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1828971) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1830811) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1832861) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1834911) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1836851) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1839001) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1840841) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1842891) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1844941) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1846991) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1848851) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1850781) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1852931) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1854981) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1856821) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1858871) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1860811) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1862961) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1864811) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1867061) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1868901) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1870851) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1873001) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1874841) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1876921) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1878941) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1880791) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1882831) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1884881) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1886821) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1888981) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1890821) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1893071) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1894911) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1896961) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1898801) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1900861) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1902901) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1904851) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1907001) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1908841) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1910891) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1912831) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1914781) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1916831) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1919081) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1920831) wifi_station: Received 22 bytes: Hello from TCP client![0m
+[0;32mI (1922971) 

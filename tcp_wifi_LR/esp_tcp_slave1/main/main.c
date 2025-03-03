@@ -10,14 +10,23 @@
 #include "lwip/netdb.h"
 #include "lwip/sys.h"
 #include "esp_log.h"
+#include "driver/gpio.h"
 
 #define WIFI_SSID "ESP32"
 #define WIFI_PASS "11112222"
 #define PORT 8888
+#define BUILTIN_LED GPIO_NUM_2
 
 static const char *TAG = "wifi_station";
 static char incomingPacket[255];  // buffer for incoming packets
 static int sock;
+
+void blink_led(){
+    gpio_set_level(BUILTIN_LED, 1); // Turn LED ON
+    vTaskDelay(100 / portTICK_PERIOD_MS); // Delay for 100ms
+    gpio_set_level(BUILTIN_LED, 0); // Turn LED OFF
+    vTaskDelay(100 / portTICK_PERIOD_MS); // Delay for 100ms
+}
 
 static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data) {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
@@ -121,6 +130,7 @@ void tcp_task(void *pvParameters) {
             } else {
                 incomingPacket[len] = 0;
                 ESP_LOGI(TAG, "Received %d bytes: %s", len, incomingPacket);
+                blink_led();
             }
         }
     }
@@ -134,6 +144,11 @@ void app_main(void)
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret); 
+    gpio_config_t io_config = {
+        .mode = GPIO_MODE_OUTPUT,
+        .pin_bit_mask = 1ULL << BUILTIN_LED
+    };
+    gpio_config(&io_config);
 
     wifi_init_sta();
 
