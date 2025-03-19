@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "esp_tcp_master",
-    "project_version":    "9ee140e-dirty",
+    "project_version":    "42baea7-dirty",
     "project_path":       "D:/AIFARM/ESP_IDF/tcp_wifi_LR/esp_tcp_master",
     "idf_path":           "D:/esp/esp-idf/v5.3/esp-idf",
     "build_dir":          "D:/AIFARM/ESP_IDF/tcp_wifi_LR/esp_tcp_master/build",

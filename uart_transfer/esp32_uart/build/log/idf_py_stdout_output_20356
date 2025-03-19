@@ -1,0 +1,660 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Mar  4 2025 14:34:41[0m
+[0;32mI (33) boot: Multicore bootloader[0m
+[0;32mI (37) boot: chip revision: v3.1[0m
+[0;32mI (41) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (45) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (50) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (54) boot: Enabling RNG early entropy source...[0m
+[0;32mI (60) boot: Partition Table:[0m
+[0;32mI (63) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (71) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (78) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (86) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (93) boot: End of partition table[0m
+[0;32mI (97) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0ad5ch ( 44380) map[0m
+[0;32mI (121) esp_image: segment 1: paddr=0001ad84 vaddr=3ffb0000 size=02364h (  9060) load[0m
+[0;32mI (125) esp_image: segment 2: paddr=0001d0f0 vaddr=40080000 size=02f28h ( 12072) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=167e8h ( 92136) map[0m
+[0;32mI (167) esp_image: segment 4: paddr=00036810 vaddr=40082f28 size=0abb4h ( 43956) load[0m
+[0;32mI (191) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (191) boot: Disabling RNG early entropy source...[0m
+[0;32mI (204) cpu_start: Multicore app[0m
+[0;32mI (212) cpu_start: Pro cpu start user code[0m
+[0;32mI (212) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (212) app_init: Application information:[0m
+[0;32mI (215) app_init: Project name:     esp32_uart[0m
+[0;32mI (220) app_init: App version:      42baea7-dirty[0m
+[0;32mI (225) app_init: Compile time:     Mar  4 2025 15:01:25[0m
+[0;32mI (231) app_init: ELF file SHA256:  d2852e1b4...[0m
+[0;32mI (237) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (243) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (248) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (253) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (258) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (265) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (271) heap_init: At 3FFB2CB0 len 0002D350 (180 KiB): DRAM[0m
+[0;32mI (277) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (283) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (290) heap_init: At 4008DADC len 00012524 (73 KiB): IRAM[0m
+[0;32mI (297) spi_flash: detected chip: generic[0m
+[0;32mI (300) spi_flash: flash io: dio[0m
+[0;33mW (304) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (318) main_task: Started on CPU0[0m
+[0;32mI (328) main_task: Calling app_main()[0m
+[0;32mI (328) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (338) UART_EXAMPLE: No data received.[0m
+[0;32mI (838) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (848) UART_EXAMPLE: No data received.[0m
+[0;32mI (1348) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (1358) UART_EXAMPLE: No data received.[0m
+[0;32mI (1858) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (1868) UART_EXAMPLE: No data received.[0m
+[0;32mI (2368) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (2378) UART_EXAMPLE: No data received.[0m
+[0;32mI (2878) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (2888) UART_EXAMPLE: No data received.[0m
+[0;32mI (3388) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (3398) UART_EXAMPLE: No data received.[0m
+[0;32mI (3898) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (3908) UART_EXAMPLE: No data received.[0m
+[0;32mI (4408) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (4418) UART_EXAMPLE: No data received.[0m
+[0;32mI (4918) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (4928) UART_EXAMPLE: No data received.[0m
+[0;32mI (5428) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (5438) UART_EXAMPLE: No data received.[0m
+[0;32mI (5938) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (5948) UART_EXAMPLE: No data received.[0m
+[0;32mI (6448) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (6458) UART_EXAMPLE: No data received.[0m
+[0;32mI (6958) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (6968) UART_EXAMPLE: No data received.[0m
+[0;32mI (7468) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (7478) UART_EXAMPLE: No data received.[0m
+[0;32mI (7978) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (7988) UART_EXAMPLE: No data received.[0m
+[0;32mI (8488) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (8498) UART_EXAMPLE: No data received.[0m
+[0;32mI (8998) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (9008) UART_EXAMPLE: No data received.[0m
+[0;32mI (9508) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (9518) UART_EXAMPLE: No data received.[0m
+[0;32mI (10018) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (10028) UART_EXAMPLE: No data received.[0m
+[0;32mI (10528) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (10538) UART_EXAMPLE: No data received.[0m
+[0;32mI (11038) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (11048) UART_EXAMPLE: No data received.[0m
+[0;32mI (11548) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (11558) UART_EXAMPLE: No data received.[0m
+[0;32mI (12058) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (12068) UART_EXAMPLE: No data received.[0m
+[0;32mI (12568) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (12578) UART_EXAMPLE: No data received.[0m
+[0;32mI (13078) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (13088) UART_EXAMPLE: No data received.[0m
+[0;32mI (13588) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (13598) UART_EXAMPLE: No data received.[0m
+[0;32mI (14098) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (14108) UART_EXAMPLE: No data received.[0m
+[0;32mI (14608) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (14618) UART_EXAMPLE: No data received.[0m
+[0;32mI (15118) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (15128) UART_EXAMPLE: No data received.[0m
+[0;32mI (15628) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (15638) UART_EXAMPLE: No data received.[0m
+[0;32mI (16138) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (16148) UART_EXAMPLE: No data received.[0m
+[0;32mI (16648) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (16658) UART_EXAMPLE: No data received.[0m
+[0;32mI (17158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (17168) UART_EXAMPLE: No data received.[0m
+[0;32mI (17668) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (17678) UART_EXAMPLE: No data received.[0m
+[0;32mI (18178) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (18188) UART_EXAMPLE: No data received.[0m
+[0;32mI (18688) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (18698) UART_EXAMPLE: No data received.[0m
+[0;32mI (19198) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (19208) UART_EXAMPLE: No data received.[0m
+[0;32mI (19708) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (19718) UART_EXAMPLE: No data received.[0m
+[0;32mI (20218) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (20228) UART_EXAMPLE: No data received.[0m
+[0;32mI (20728) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (20738) UART_EXAMPLE: No data received.[0m
+[0;32mI (21238) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (21248) UART_EXAMPLE: No data received.[0m
+[0;32mI (21748) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (21758) UART_EXAMPLE: No data received.[0m
+[0;32mI (22258) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (22268) UART_EXAMPLE: No data received.[0m
+[0;32mI (22768) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (22778) UART_EXAMPLE: No data received.[0m
+[0;32mI (23278) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (23288) UART_EXAMPLE: No data received.[0m
+[0;32mI (23788) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (23798) UART_EXAMPLE: No data received.[0m
+[0;32mI (24298) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (24308) UART_EXAMPLE: No data received.[0m
+[0;32mI (24808) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (24818) UART_EXAMPLE: No data received.[0m
+[0;32mI (25318) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (25328) UART_EXAMPLE: No data received.[0m
+[0;32mI (25828) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (25838) UART_EXAMPLE: No data received.[0m
+[0;32mI (26338) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (26348) UART_EXAMPLE: No data received.[0m
+[0;32mI (26848) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (26858) UART_EXAMPLE: No data received.[0m
+[0;32mI (27358) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (27368) UART_EXAMPLE: No data received.[0m
+[0;32mI (27868) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (27878) UART_EXAMPLE: No data received.[0m
+[0;32mI (28378) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (28388) UART_EXAMPLE: No data received.[0m
+[0;32mI (28888) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (28898) UART_EXAMPLE: No data received.[0m
+[0;32mI (29398) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (29408) UART_EXAMPLE: No data received.[0m
+[0;32mI (29908) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (29918) UART_EXAMPLE: No data received.[0m
+[0;32mI (30418) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (30428) UART_EXAMPLE: No data received.[0m
+[0;32mI (30928) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (30938) UART_EXAMPLE: No data received.[0m
+[0;32mI (31438) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (31448) UART_EXAMPLE: No data received.[0m
+[0;32mI (31948) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (31958) UART_EXAMPLE: No data received.[0m
+[0;32mI (32458) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (32468) UART_EXAMPLE: No data received.[0m
+[0;32mI (32968) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (32978) UART_EXAMPLE: No data received.[0m
+[0;32mI (33478) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (33488) UART_EXAMPLE: No data received.[0m
+[0;32mI (33988) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (33998) UART_EXAMPLE: No data received.[0m
+[0;32mI (34498) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (34508) UART_EXAMPLE: No data received.[0m
+[0;32mI (35008) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (35018) UART_EXAMPLE: No data received.[0m
+[0;32mI (35518) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (35528) UART_EXAMPLE: No data received.[0m
+[0;32mI (36028) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (36038) UART_EXAMPLE: No data received.[0m
+[0;32mI (36538) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (36548) UART_EXAMPLE: No data received.[0m
+[0;32mI (37048) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (37058) UART_EXAMPLE: No data received.[0m
+[0;32mI (37558) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (37568) UART_EXAMPLE: No data received.[0m
+[0;32mI (38068) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (38078) UART_EXAMPLE: No data received.[0m
+[0;32mI (38578) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (38588) UART_EXAMPLE: Data received over UART. Length: 31, Data: ? �<0[0m
+[0;32mI (39088) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (39098) UART_EXAMPLE: Data received over UART. Length: 112, Data: < [0m
+[0;32mI (39598) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (39608) UART_EXAMPLE: Data received over UART. Length: 79, Data: 0[0m
+[0;32mI (40108) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (40118) UART_EXAMPLE: Data received over UART. Length: 114, Data: < [0m
+[0;32mI (40618) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (40628) UART_EXAMPLE: Data received over UART. Length: 125, Data: >< [0m
+[0;32mI (41128) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (41128) UART_EXAMPLE: Data received over UART. Length: 127, Data: >80 [0m
+[0;32mI (41628) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (41628) UART_EXAMPLE: Data received over UART. Length: 127, Data: 0[0m
+[0;32mI (42128) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (42128) UART_EXAMPLE: Data received over UART. Length: 127, Data: ><[0m
+[0;32mI (42628) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (42638) UART_EXAMPLE: Data received over UART. Length: 122, Data: [0m
+[0;32mI (43138) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (43148) UART_EXAMPLE: Data received over UART. Length: 116, Data: ��I am From ESP32
+�[0m
+[0;32mI (43648) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (43658) UART_EXAMPLE: Data received over UART. Length: 111, Data: ��?[0m
+[0;32mI (44158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (44158) UART_EXAMPLE: Data received over UART. Length: 127, Data: �J�am From ESP3[0m
+[0;32mI (44658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (44658) UART_EXAMPLE: Data received over UART. Length: 127, Data: �>80[0m
+[0;32mI (45158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (45158) UART_EXAMPLE: Data received over UART. Length: 127, Data: �>< [0m
+[0;32mI (45658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (45658) UART_EXAMPLE: Data received over UART. Length: 127, Data: ?<�>8[0m
+[0;32mI (46158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (46158) UART_EXAMPLE: Data received over UART. Length: 127, Data: q  �>[0m
+[0;32mI (46658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (46658) UART_EXAMPLE: Data received over UART. Length: 127, Data: [0m
+[0;32mI (47158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (47158) UART_EXAMPLE: Data received over UART. Length: 127, Data:  [0m
+[0;32mI (47658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (47658) UART_EXAMPLE: Data received over UART. Length: 127, Data: �0[0m
+[0;32mI (48158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (48158) UART_EXAMPLE: Data received over UART. Length: 127, Data: ?8[0m
+[0;32mI (48658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (48658) UART_EXAMPLE: Data received over UART. Length: 127, Data: �><0[0m
+[0;32mI (49158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (49158) UART_EXAMPLE: Data received over UART. Length: 127, Data: >[0m
+[0;32mI (49658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (49658) UART_EXAMPLE: Data received over UART. Length: 127, Data: �
+[0;32mI (50158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (50158) UART_EXAMPLE: Data received over UART. Length: 127, Data:  �?�<8[0m
+[0;32mI (50658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (50658) UART_EXAMPLE: Data received over UART. Length: 127, Data: <0 �><0�<[0m
+[0;32mI (51158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (51158) UART_EXAMPLE: Data received over UART. Length: 127, Data: [0m
+[0;32mI (51658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (51658) UART_EXAMPLE: Data received over UART. Length: 127, Data: �[0m
+[0;32mI (52158) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (52168) UART_EXAMPLE: Data received over UART. Length: 80, Data: ?<[0m
+[0;32mI (52668) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (52678) UART_EXAMPLE: Data received over UART. Length: 34, Data: �[0m
+[0;32mI (53178) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (53188) UART_EXAMPLE: No data received.[0m
+[0;32mI (53688) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (53698) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (54198) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (54208) UART_EXAMPLE: No data received.[0m
+[0;32mI (54708) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (54718) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (55218) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (55228) UART_EXAMPLE: No data received.[0m
+[0;32mI (55728) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (55738) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (56238) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (56248) UART_EXAMPLE: No data received.[0m
+[0;32mI (56748) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (56758) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (57258) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (57268) UART_EXAMPLE: No data received.[0m
+[0;32mI (57768) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (57778) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (58278) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (58288) UART_EXAMPLE: No data received.[0m
+[0;32mI (58788) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (58798) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (59298) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (59308) UART_EXAMPLE: No data received.[0m
+[0;32mI (59808) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (59818) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (60318) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (60328) UART_EXAMPLE: No data received.[0m
+[0;32mI (60828) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (60838) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (61338) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (61348) UART_EXAMPLE: No data received.[0m
+[0;32mI (61848) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (61858) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (62358) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (62368) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (62868) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (62878) UART_EXAMPLE: No data received.[0m
+[0;32mI (63378) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (63388) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (63888) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (63898) UART_EXAMPLE: No data received.[0m
+[0;32mI (64398) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (64408) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (64908) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (64918) UART_EXAMPLE: No data received.[0m
+[0;32mI (65418) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (65428) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (65928) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (65938) UART_EXAMPLE: No data received.[0m
+[0;32mI (66438) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (66448) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (66948) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (66958) UART_EXAMPLE: No data received.[0m
+[0;32mI (67458) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (67468) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (67968) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (67978) UART_EXAMPLE: No data received.[0m
+[0;32mI (68478) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (68488) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (68988) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (68998) UART_EXAMPLE: No data received.[0m
+[0;32mI (69498) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (69508) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (70008) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (70018) UART_EXAMPLE: No data received.[0m
+[0;32mI (70518) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (70528) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (71028) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (71038) UART_EXAMPLE: No data received.[0m
+[0;32mI (71538) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (71548) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (72048) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (72058) UART_EXAMPLE: No data received.[0m
+[0;32mI (72558) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (72568) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (73068) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (73078) UART_EXAMPLE: No data received.[0m
+[0;32mI (73578) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (73588) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (74088) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (74098) UART_EXAMPLE: No data received.[0m
+[0;32mI (74598) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (74608) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (75108) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (75118) UART_EXAMPLE: No data received.[0m
+[0;32mI (75618) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (75628) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (76128) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (76138) UART_EXAMPLE: No data received.[0m
+[0;32mI (76638) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (76648) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (77148) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (77158) UART_EXAMPLE: No data received.[0m
+[0;32mI (77658) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (77668) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (78168) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (78178) UART_EXAMPLE: No data received.[0m
+[0;32mI (78678) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (78688) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (79188) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (79198) UART_EXAMPLE: No data received.[0m
+[0;32mI (79698) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (79708) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (80208) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (80218) UART_EXAMPLE: No data received.[0m
+[0;32mI (80718) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (80728) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (81228) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (81238) UART_EXAMPLE: No data received.[0m
+[0;32mI (81738) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (81748) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (82248) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (82258) UART_EXAMPLE: No data received.[0m
+[0;32mI (82758) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (82768) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (83268) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (83278) UART_EXAMPLE: No data received.[0m
+[0;32mI (83778) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (83788) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (84288) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (84298) UART_EXAMPLE: No data received.[0m
+[0;32mI (84798) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (84808) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (85308) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (85318) UART_EXAMPLE: No data received.[0m
+[0;32mI (85818) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (85828) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (86328) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (86338) UART_EXAMPLE: No data received.[0m
+[0;32mI (86838) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (86848) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (87348) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (87358) UART_EXAMPLE: No data received.[0m
+[0;32mI (87858) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (87868) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (88368) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (88378) UART_EXAMPLE: No data received.[0m
+[0;32mI (88878) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (88888) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (89388) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (89398) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (89898) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (89908) UART_EXAMPLE: No data received.[0m
+[0;32mI (90408) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (90418) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (90918) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (90928) UART_EXAMPLE: No data received.[0m
+[0;32mI (91428) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (91438) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (91938) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (91948) UART_EXAMPLE: No data received.[0m
+[0;32mI (92448) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (92458) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (92958) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (92968) UART_EXAMPLE: No data received.[0m
+[0;32mI (93468) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (93478) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (93978) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (93988) UART_EXAMPLE: No data received.[0m
+[0;32mI (94488) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (94498) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (94998) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (95008) UART_EXAMPLE: No data received.[0m
+[0;32mI (95508) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (95518) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (96018) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (96028) UART_EXAMPLE: No data received.[0m
+[0;32mI (96528) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (96538) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (97038) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (97048) UART_EXAMPLE: No data received.[0m
+[0;32mI (97548) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (97558) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (98058) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (98068) UART_EXAMPLE: No data received.[0m
+[0;32mI (98568) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (98578) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (99078) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (99088) UART_EXAMPLE: No data received.[0m
+[0;32mI (99588) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (99598) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (100098) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (100108) UART_EXAMPLE: No data received.[0m
+[0;32mI (100608) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (100618) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (101118) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (101128) UART_EXAMPLE: No data received.[0m
+[0;32mI (101628) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (101638) UART_EXAMPLE: Data received over UART. Length: 15, Data: hellofrom STM32[0m
+[0;32mI (102138) UART_EXAMPLE: Data sent over UART: Hi I am From ESP32
+[0m
+[0;32mI (102148) UART_EXAMPLE: No 

@@ -46,10 +46,14 @@ void wifi_init_sta() {
     esp_netif_init();
     esp_event_loop_create_default();
     esp_netif_create_default_wifi_sta();
-    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-    esp_wifi_init(&cfg);
     esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL, NULL);
     esp_event_handler_instance_register(IP_EVENT,IP_EVENT_STA_GOT_IP, &wifi_event_handler, NULL, NULL);
+    
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    esp_wifi_init(&cfg);
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_set_protocol(WIFI_IF_STA, WIFI_PROTOCOL_LR));
+
     wifi_config_t wifi_config = {
         .sta = {
             .ssid = WIFI_SSID,
@@ -57,10 +61,87 @@ void wifi_init_sta() {
             .threshold.authmode = WIFI_AUTH_WPA2_PSK,
         },
     };
-    esp_wifi_set_mode(WIFI_MODE_STA);
-    esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config);
-    esp_wifi_start();
+    ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config));
+    ESP_ERROR_CHECK(esp_wifi_start());
+    // esp_wifi_start(&cfg);
+    // esp_wifi_set_mode(WIFI_MODE_STA);
+    // esp_wifi_set_protocol(WIFI_IF_STA, WIFI_PROTOCOL_LR);
+    // esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config);
 }
+
+// void tcp_task(void *pvParameters) {
+//     struct sockaddr_in destAddr;
+//     destAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+//     destAddr.sin_family = AF_INET;
+//     destAddr.sin_port = htons(PORT);
+
+//     //create a socket
+//     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
+//     // domain: specifies the address (AF_INET for IPv4)
+//     //type: Specifies the socket type (SOCK_STEAM for TCP)
+//     //protocol : specifies the protocol (usually 0 for default protocol)
+//     if (sock < 0) {
+//         ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
+//         vTaskDelete(NULL);
+//         return;
+//     }
+//     //Bind the socket
+//     int err = bind(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
+//     if (err != 0) {
+//         ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
+//         close(sock);
+//         vTaskDelete(NULL);
+//         return;
+//     }
+//     ESP_LOGI(TAG, "Socket bound successfully to port %d.", PORT);
+
+//     //Listen for incoming connections
+//     err = listen(sock, 1);
+//     if (err != 0) {
+//         ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
+//         close(sock);
+//         vTaskDelete(NULL);
+//         return;
+//     }
+//     ESP_LOGI(TAG, "Socket listening");
+
+//     while (1) {
+//         //Accept a connection:
+//         struct sockaddr_in sourceAddr;
+//         uint addrLen = sizeof(sourceAddr);
+//         int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
+//         if (clientSock < 0) {
+//             ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
+//             close(sock);
+//             // vTaskDelete(NULL);
+//             // return;
+//             break;
+//         }
+
+//         // ESP_LOGI(TAG, "Socket accepted");
+//         char clientIP[16];
+//         inet_ntoa_r(sourceAddr.sin_addr, clientIP, sizeof(clientIP));
+//         ESP_LOGI(TAG, "Client connected from IP: %s, port: %d", clientIP, ntohs(sourceAddr.sin_port));
+
+//         //Receive data from the client
+//         while (1) {
+//             int len = recv(clientSock, incomingPacket, sizeof(incomingPacket) - 1, 0);
+//             if (len < 0) {
+//                 ESP_LOGE(TAG, "recv failed: errno %d", errno);
+//                 close(clientSock);
+//                 break;
+//             } else if (len == 0) {
+//                 ESP_LOGI(TAG, "Connection closed");
+//                 close(clientSock);
+//                 break;
+//             } else {
+//                 incomingPacket[len] = 0;
+//                 ESP_LOGI(TAG, "Received %d bytes: %s", len, incomingPacket);
+//                 blink_led();
+//             }
+//         }
+//     }
+// }
 
 void tcp_task(void *pvParameters) {
     struct sockaddr_in destAddr;
@@ -68,17 +149,15 @@ void tcp_task(void *pvParameters) {
     destAddr.sin_family = AF_INET;
     destAddr.sin_port = htons(PORT);
 
-    //create a socket
+    // Create a socket
     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
-    // domain: specifies the address (AF_INET for IPv4)
-    //type: Specifies the socket type (SOCK_STEAM for TCP)
-    //protocol : specifies the protocol (usually 0 for default protocol)
     if (sock < 0) {
         ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
         vTaskDelete(NULL);
         return;
     }
-    //Bind the socket
+
+    // Bind the socket
     int err = bind(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
     if (err != 0) {
         ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
@@ -88,7 +167,7 @@ void tcp_task(void *pvParameters) {
     }
     ESP_LOGI(TAG, "Socket bound successfully to port %d.", PORT);
 
-    //Listen for incoming connections
+    // Listen for incoming connections
     err = listen(sock, 1);
     if (err != 0) {
         ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
@@ -99,24 +178,26 @@ void tcp_task(void *pvParameters) {
     ESP_LOGI(TAG, "Socket listening");
 
     while (1) {
-        //Accept a connection:
+        // Accept a connection
         struct sockaddr_in sourceAddr;
         uint addrLen = sizeof(sourceAddr);
         int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
         if (clientSock < 0) {
             ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
-            close(sock);
-            // vTaskDelete(NULL);
-            // return;
-            break;
+            // close(sock);
+            // break;
+            continue; //continue listening for new connections
         }
 
-        // ESP_LOGI(TAG, "Socket accepted");
         char clientIP[16];
         inet_ntoa_r(sourceAddr.sin_addr, clientIP, sizeof(clientIP));
         ESP_LOGI(TAG, "Client connected from IP: %s, port: %d", clientIP, ntohs(sourceAddr.sin_port));
 
-        //Receive data from the client
+        // Set a timeout for recv()
+        struct timeval timeout = { .tv_sec = 5, .tv_usec = 0 }; // 5-second timeout
+        setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+        
+        // Receive data from the client
         while (1) {
             int len = recv(clientSock, incomingPacket, sizeof(incomingPacket) - 1, 0);
             if (len < 0) {
@@ -128,11 +209,23 @@ void tcp_task(void *pvParameters) {
                 close(clientSock);
                 break;
             } else {
-                incomingPacket[len] = 0;
+                incomingPacket[len] = 0; // Null-terminate the received data
                 ESP_LOGI(TAG, "Received %d bytes: %s", len, incomingPacket);
                 blink_led();
+
+                // Send a response back to the master
+                const char *response = "Hello ESP Master";
+                int sent = send(clientSock, response, strlen(response), 0);
+                if (sent < 0) {
+                    ESP_LOGE(TAG, "Error sending response: errno %d", errno);
+                } else {
+                    ESP_LOGI(TAG, "Sent response: %s", response);
+                }
             }
+        // close(clientSock);
         }
+        // close(sock);
+        // vTaskDelete(NULL);
     }
 }
 

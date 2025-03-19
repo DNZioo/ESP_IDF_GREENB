@@ -1,0 +1,356 @@
+�xxxxx�x�x���� �ets Jun  8 2016 0Ғ�Ҫ�j
+
+rst:0x1 (POWERON%UMQ),boot:0x13 (SPI_FA*�e1SH_BOOT)
+configsip: 0, *�]A:0xee
+clk_drv:0x00)}��v:0x00,d_drv:0x0b��_drv:0x00,hd_d.����0,wp_drv:0x00
+mode'T�	�����div:2
+loa����fff0030,len:7176
+l+��0x40078000,len:155SH�������12 roo[�j
+load:0x40080400,��:4
+load:0x4008���bb���3904
+entry���0080640
+[0;32mI (30) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Feb 28 2025 14:34:27[0m
+[0;32mI (32) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v1.0[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=20138h (131384) map[0m
+[0;32mI (150) esp_image: segment 1: paddr=00030160 vaddr=3ffb0000 size=03f18h ( 16152) load[0m
+[0;32mI (156) esp_image: segment 2: paddr=00034080 vaddr=40080000 size=0bf98h ( 49048) load[0m
+[0;32mI (175) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=85aa8h (547496) map[0m
+[0;32mI (363) esp_image: segment 4: paddr=000c5ad0 vaddr=4008bf98 size=0b4c0h ( 46272) load[0m
+[0;32mI (393) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (393) boot: Disabling RNG early entropy source...[0m
+[0;32mI (406) cpu_start: Multicore app[0m
+[0;32mI (415) cpu_start: Pro cpu start user code[0m
+[0;32mI (415) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (415) app_init: Application information:[0m
+[0;32mI (418) app_init: Project name:     esp_tcp_slave1[0m
+[0;32mI (423) app_init: App version:      42baea7-dirty[0m
+[0;32mI (428) app_init: Compile time:     Mar  3 2025 10:31:47[0m
+[0;32mI (434) app_init: ELF file SHA256:  e76baf361...[0m
+[0;32mI (440) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (446) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (451) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (456) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (461) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (468) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFB8258 len 00027DA8 (159 KiB): DRAM[0m
+[0;32mI (480) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (486) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (493) heap_init: At 40097458 len 00008BA8 (34 KiB): IRAM[0m
+[0;32mI (500) spi_flash: detected chip: generic[0m
+[0;32mI (503) spi_flash: flash io: dio[0m
+[0;33mW (507) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (522) main_task: Started on CPU0[0m
+[0;32mI (532) main_task: Calling app_main()[0m
+[0;32mI (562) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (572) wifi:wifi driver task: 3ffc0268, prio:23, stack:6656, core=0[0m
+[0;32mI (582) wifi:wifi firmware version: 6f4dea5[0m
+[0;32mI (582) wifi:wifi certification version: v7.0[0m
+[0;32mI (582) wifi:config NVS flash: enabled[0m
+[0;32mI (582) wifi:config nano formating: disabled[0m
+[0;32mI (592) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (592) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (602) wifi:Init management short buffer num: 32[0m
+[0;32mI (602) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (612) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (612) wifi:Init static rx buffer num: 10[0m
+[0;32mI (612) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (622) wifi_init: rx ba win: 6[0m
+[0;32mI (622) wifi_init: accept mbox: 6[0m
+[0;32mI (632) wifi_init: tcpip mbox: 32[0m
+[0;32mI (632) wifi_init: udp mbox: 6[0m
+[0;32mI (632) wifi_init: tcp mbox: 6[0m
+[0;32mI (642) wifi_init: tcp tx win: 5760[0m
+[0;32mI (642) wifi_init: tcp rx win: 5760[0m
+[0;32mI (652) wifi_init: tcp mss: 1440[0m
+[0;32mI (652) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (652) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (662) wifi:ifx:0, phymode(new:0x4, nvs:0x3)[0m
+[0;32mI (672) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (752) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (752) wifi:enable tsf[0m
+[0;32mI (762) wifi_station: Starting TCP server task[0m
+[0;32mI (762) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;32mI (762) wifi_station: Socket bound successfully to port 8888.[0m
+[0;32mI (762) main_task: Returned from app_main()[0m
+[0;32mI (772) wifi_station: Socket listening[0m
+[0;31mE (3182) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (3182) wifi_station: retry to connect to the AP[0m
+[0;31mE (5592) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (5602) wifi_station: retry to connect to the AP[0m
+[0;31mE (8012) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (8012) wifi_station: retry to connect to the AP[0m
+[0;31mE (10422) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (10432) wifi_station: retry to connect to the AP[0m
+[0;31mE (12842) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (12842) wifi_station: retry to connect to the AP[0m
+[0;31mE (15252) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (15262) wifi_station: retry to connect to the AP[0m
+[0;31mE (17672) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (17672) wifi_station: retry to connect to the AP[0m
+[0;31mE (20092) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (20092) wifi_station: retry to connect to the AP[0m
+[0;31mE (22502) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (22502) wifi_station: retry to connect to the AP[0m
+[0;31mE (24922) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (24922) wifi_station: retry to connect to the AP[0m
+[0;31mE (27332) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (27342) wifi_station: retry to connect to the AP[0m
+[0;31mE (29752) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (29752) wifi_station: retry to connect to the AP[0m
+[0;31mE (32162) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (32172) wifi_station: retry to connect to the AP[0m
+[0;31mE (34582) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (34582) wifi_station: retry to connect to the AP[0m
+[0;31mE (36992) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (37002) wifi_station: retry to connect to the AP[0m
+[0;31mE (39412) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (39412) wifi_station: retry to connect to the AP[0m
+[0;31mE (41822) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (41832) wifi_station: retry to connect to the AP[0m
+[0;31mE (44242) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (44242) wifi_station: retry to connect to the AP[0m
+[0;31mE (46662) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (46662) wifi_station: retry to connect to the AP[0m
+[0;31mE (49072) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (49072) wifi_station: retry to connect to the AP[0m
+[0;31mE (51492) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (51492) wifi_station: retry to connect to the AP[0m
+[0;31mE (53902) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (53902) wifi_station: retry to connect to the AP[0m
+[0;31mE (56322) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (56322) wifi_station: retry to connect to the AP[0m
+[0;31mE (58732) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (58742) wifi_station: retry to connect to the AP[0m
+[0;31mE (61152) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (61152) wifi_station: retry to connect to the AP[0m
+[0;31mE (63562) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (63572) wifi_station: retry to connect to the AP[0m
+[0;31mE (65982) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (65982) wifi_station: retry to connect to the AP[0m
+[0;31mE (68392) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (68402) wifi_station: retry to connect to the AP[0m
+[0;31mE (70812) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (70812) wifi_station: retry to connect to the AP[0m
+[0;31mE (73222) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (73232) wifi_station: retry to connect to the AP[0m
+[0;31mE (75642) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (75642) wifi_station: retry to connect to the AP[0m
+[0;31mE (78062) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (78062) wifi_station: retry to connect to the AP[0m
+[0;31mE (80472) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (80472) wifi_station: retry to connect to the AP[0m
+[0;31mE (82892) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (82892) wifi_station: retry to connect to the AP[0m
+[0;31mE (85302) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (85302) wifi_station: retry to connect to the AP[0m
+[0;31mE (87722) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (87722) wifi_station: retry to connect to the AP[0m
+[0;31mE (90132) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (90142) wifi_station: retry to connect to the AP[0m
+[0;31mE (92552) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (92552) wifi_station: retry to connect to the AP[0m
+[0;31mE (94962) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (94972) wifi_station: retry to connect to the AP[0m
+[0;31mE (97382) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (97382) wifi_station: retry to connect to the AP[0m
+[0;31mE (99792) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (99802) wifi_station: retry to connect to the AP[0m
+[0;31mE (102212) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (102212) wifi_station: retry to connect to the AP[0m
+[0;31mE (104622) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (104632) wifi_station: retry to connect to the AP[0m
+[0;31mE (107042) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (107042) wifi_station: retry to connect to the AP[0m
+[0;31mE (109462) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (109462) wifi_station: retry to connect to the AP[0m
+[0;31mE (111872) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (111872) wifi_station: retry to connect to the AP[0m
+[0;31mE (114292) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (114292) wifi_station: retry to connect to the AP[0m
+[0;31mE (116702) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (116712) wifi_station: retry to connect to the AP[0m
+[0;31mE (119122) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (119122) wifi_station: retry to connect to the AP[0m
+[0;31mE (121532) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (121542) wifi_station: retry to connect to the AP[0m
+[0;31mE (123952) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (123952) wifi_station: retry to connect to the AP[0m
+[0;31mE (126362) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (126372) wifi_station: retry to connect to the AP[0m
+[0;31mE (128782) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (128782) wifi_station: retry to connect to the AP[0m
+[0;31mE (131192) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (131202) wifi_station: retry to connect to the AP[0m
+[0;31mE (133612) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (133612) wifi_station: retry to connect to the AP[0m
+[0;31mE (136022) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (136032) wifi_station: retry to connect to the AP[0m
+[0;31mE (138442) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (138442) wifi_station: retry to connect to the AP[0m
+[0;31mE (140862) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (140862) wifi_station: retry to connect to the AP[0m
+[0;31mE (143272) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (143282) wifi_station: retry to connect to the AP[0m
+[0;31mE (145692) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (145692) wifi_station: retry to connect to the AP[0m
+[0;31mE (148102) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (148112) wifi_station: retry to connect to the AP[0m
+[0;31mE (150522) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (150522) wifi_station: retry to connect to the AP[0m
+[0;31mE (152932) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (152942) wifi_station: retry to connect to the AP[0m
+[0;31mE (155352) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (155352) wifi_station: retry to connect to the AP[0m
+[0;31mE (157762) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (157772) wifi_station: retry to connect to the AP[0m
+[0;31mE (160182) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (160182) wifi_station: retry to connect to the AP[0m
+[0;31mE (162592) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (162602) wifi_station: retry to connect to the AP[0m
+[0;31mE (165012) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (165012) wifi_station: retry to connect to the AP[0m
+[0;31mE (167432) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (167432) wifi_station: retry to connect to the AP[0m
+[0;31mE (169842) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (169842) wifi_station: retry to connect to the AP[0m
+[0;31mE (172262) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (172262) wifi_station: retry to connect to the AP[0m
+[0;31mE (174672) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (174672) wifi_station: retry to connect to the AP[0m
+[0;31mE (177092) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (177092) wifi_station: retry to connect to the AP[0m
+[0;31mE (179502) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (179512) wifi_station: retry to connect to the AP[0m
+[0;31mE (181922) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (181922) wifi_station: retry to connect to the AP[0m
+[0;31mE (184332) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (184342) wifi_station: retry to connect to the AP[0m
+[0;31mE (186752) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (186752) wifi_station: retry to connect to the AP[0m
+[0;31mE (189162) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (189172) wifi_station: retry to connect to the AP[0m
+[0;31mE (191582) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (191582) wifi_station: retry to connect to the AP[0m
+[0;31mE (194002) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (194002) wifi_station: retry to connect to the AP[0m
+[0;31mE (196412) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (196412) wifi_station: retry to connect to the AP[0m
+[0;31mE (198832) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (198832) wifi_station: retry to connect to the AP[0m
+[0;31mE (201242) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (201242) wifi_station: retry to connect to the AP[0m
+[0;31mE (203662) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (203662) wifi_station: retry to connect to the AP[0m
+[0;31mE (206072) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (206082) wifi_station: retry to connect to the AP[0m
+[0;31mE (208492) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (208492) wifi_station: retry to connect to the AP[0m
+[0;31mE (210902) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (210912) wifi_station: retry to connect to the AP[0m
+[0;31mE (213322) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (213322) wifi_station: retry to connect to the AP[0m
+[0;31mE (215732) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (215742) wifi_station: retry to connect to the AP[0m
+[0;31mE (218152) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (218152) wifi_station: retry to connect to the AP[0m
+[0;31mE (220572) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (220572) wifi_station: retry to connect to the AP[0m
+[0;31mE (222982) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (222982) wifi_station: retry to connect to the AP[0m
+[0;31mE (225402) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (225402) wifi_station: retry to connect to the AP[0m
+[0;31mE (227812) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (227822) wifi_station: retry to connect to the AP[0m
+[0;31mE (230232) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (230232) wifi_station: retry to connect to the AP[0m
+[0;31mE (232642) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (232652) wifi_station: retry to connect to the AP[0m
+[0;31mE (235062) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (235062) wifi_station: retry to connect to the AP[0m
+[0;31mE (237472) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (237482) wifi_station: retry to connect to the AP[0m
+[0;31mE (239892) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (239892) wifi_station: retry to connect to the AP[0m
+[0;31mE (242302) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (242312) wifi_station: retry to connect to the AP[0m
+[0;31mE (244722) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (244722) wifi_station: retry to connect to the AP[0m
+[0;31mE (247142) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (247142) wifi_station: retry to connect to the AP[0m
+[0;31mE (249552) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (249552) wifi_station: retry to connect to the AP[0m
+[0;31mE (251972) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (251972) wifi_station: retry to connect to the AP[0m
+[0;31mE (254382) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (254392) wifi_station: retry to connect to the AP[0m
+[0;31mE (256802) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (256802) wifi_station: retry to connect to the AP[0m
+[0;31mE (259212) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (259222) wifi_station: retry to connect to the AP[0m
+[0;31mE (261632) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (261632) wifi_station: retry to connect to the AP[0m
+[0;31mE (264042) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (264052) wifi_station: retry to connect to the AP[0m
+[0;31mE (266462) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (266462) wifi_station: retry to connect to the AP[0m
+[0;31mE (268872) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (268882) wifi_station: retry to connect to the AP[0m
+[0;31mE (271292) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (271292) wifi_station: retry to connect to the AP[0m
+[0;31mE (273712) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (273712) wifi_station: retry to connect to the AP[0m
+[0;31mE (276122) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (276122) wifi_station: retry to connect to the AP[0m
+[0;31mE (278542) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (278542) wifi_station: retry to connect to the AP[0m
+[0;31mE (280952) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (280962) wifi_station: retry to connect to the AP[0m
+[0;31mE (283372) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (283372) wifi_station: retry to connect to the AP[0m
+[0;31mE (285782) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (285792) wifi_station: retry to connect to the AP[0m
+[0;31mE (288202) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (288202) wifi_station: retry to connect to the AP[0m
+[0;31mE (290612) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (290622) wifi_station: retry to connect to the AP[0m
+[0;31mE (293032) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (293032) wifi_station: retry to connect to the AP[0m
+[0;31mE (295452) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (295452) wifi_station: retry to connect to the AP[0m
+[0;31mE (297862) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (297862) wifi_station: retry to connect to the AP[0m
+[0;31mE (300282) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (300282) wifi_station: retry to connect to the AP[0m
+[0;31mE (302692) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (302702) wifi_station: retry to connect to the AP[0m
+[0;31mE (305112) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (305112) wifi_station: retry to connect to the AP[0m
+[0;31mE (307522) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (307532) wifi_station: retry to connect to the AP[0m
+[0;31mE (309942) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (309942) wifi_station: retry to connect to the AP[0m
+[0;31mE (312352) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (312362) wifi_station: retry to connect to the AP[0m
+[0;31mE (314772) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (314772) wifi_station: retry to connect to the AP[0m
+[0;31mE (317182) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (317192) wifi_station: retry to connect to the AP[0m
+[0;31mE (319602) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (319602) wifi_station: retry to connect to the AP[0m
+[0;31mE (322022) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (322022) wifi_station: retry to connect to the AP[0m
+[0;31mE (324432) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (324432) wifi_station: retry to connect to the AP[0m
+[0;31mE (326852) wifi_station: WIFI disconnected. Retrying connection....[0m
