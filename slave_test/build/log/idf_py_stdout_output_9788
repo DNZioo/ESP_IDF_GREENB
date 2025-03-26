@@ -1,0 +1,350 @@
+�eׁJ��8��ʶ���&�5SH����:�E ��]���%ME�JI��t'�ųBA�_TMT��*M�_�ꊕj
+��˥�sZ� �	A�W�'����,k}�r����0,\E��i0���}��v'���)�0�V���A0���d.����bw}�r�'���C���e'T�� ��k���2!�+�i0ͦ�A0&bl�K�1�j
+�+�:��0��0����i1MM�H�� �؋�12��o��j
+�d��Q0°b╹:SH����'�ѐ�����lYK��´C����� ��00����C�[0;32mI (30) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Mar 24 2025 14:30:21[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v1.0[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1f820h (129056) map[0m
+[0;32mI (149) esp_image: segment 1: paddr=0002f848 vaddr=3ffb0000 size=007d0h (  2000) load[0m
+[0;32mI (150) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=84324h (541476) map[0m
+[0;32mI (340) esp_image: segment 3: paddr=000b434c vaddr=3ffb07d0 size=03700h ( 14080) load[0m
+[0;32mI (345) esp_image: segment 4: paddr=000b7a54 vaddr=40080000 size=17458h ( 95320) load[0m
+[0;32mI (395) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (395) boot: Disabling RNG early entropy source...[0m
+[0;32mI (407) cpu_start: Multicore app[0m
+[0;32mI (416) cpu_start: Pro cpu start user code[0m
+[0;32mI (416) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (416) app_init: Application information:[0m
+[0;32mI (419) app_init: Project name:     slave_test[0m
+[0;32mI (424) app_init: App version:      2768a2f[0m
+[0;32mI (429) app_init: Compile time:     Mar 26 2025 09:02:15[0m
+[0;32mI (435) app_init: ELF file SHA256:  b1f5d9f1e...[0m
+[0;32mI (440) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (446) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (451) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (456) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (461) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (468) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFB8108 len 00027EF8 (159 KiB): DRAM[0m
+[0;32mI (480) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (487) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (493) heap_init: At 40097458 len 00008BA8 (34 KiB): IRAM[0m
+[0;32mI (501) spi_flash: detected chip: generic[0m
+[0;32mI (504) spi_flash: flash io: dio[0m
+[0;33mW (508) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (522) main_task: Started on CPU0[0m
+[0;32mI (532) main_task: Calling app_main()[0m
+[0;32mI (572) wifi:wifi driver task: 3ffc016c, prio:23, stack:6656, core=0[0m
+[0;32mI (582) wifi:wifi firmware version: 6f4dea5[0m
+[0;32mI (582) wifi:wifi certification version: v7.0[0m
+[0;32mI (582) wifi:config NVS flash: enabled[0m
+[0;32mI (592) wifi:config nano formating: disabled[0m
+[0;32mI (592) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (592) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (602) wifi:Init management short buffer num: 32[0m
+[0;32mI (602) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (612) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (612) wifi:Init static rx buffer num: 10[0m
+[0;32mI (612) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (622) wifi_init: rx ba win: 6[0m
+[0;32mI (622) wifi_init: accept mbox: 6[0m
+[0;32mI (632) wifi_init: tcpip mbox: 32[0m
+[0;32mI (632) wifi_init: udp mbox: 6[0m
+[0;32mI (632) wifi_init: tcp mbox: 6[0m
+[0;32mI (642) wifi_init: tcp tx win: 5760[0m
+[0;32mI (642) wifi_init: tcp rx win: 5760[0m
+[0;32mI (652) wifi_init: tcp mss: 1440[0m
+[0;32mI (652) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (652) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (702) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;33mW (792) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+[0;32mI (842) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (842) wifi:enable tsf[0m
+[0;32mI (852) wifi_station: Starting TCP server task[0m
+[0;32mI (852) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;31mE (852) wifi_station: Socket unable to connect: errno 118[0m
+[0;32mI (852) main_task: Returned from app_main()[0m
+[0;31mE (2862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (3272) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (3272) wifi_station: retry to connect to the AP[0m
+[0;31mE (4862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (5682) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (5692) wifi_station: retry to connect to the AP[0m
+[0;31mE (6862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (8102) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (8102) wifi_station: retry to connect to the AP[0m
+[0;31mE (8862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (10512) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (10522) wifi_station: retry to connect to the AP[0m
+[0;31mE (10862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (12862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (12932) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (12932) wifi_station: retry to connect to the AP[0m
+[0;31mE (14862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (15352) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (15352) wifi_station: retry to connect to the AP[0m
+[0;31mE (16862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (17762) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (17762) wifi_station: retry to connect to the AP[0m
+[0;31mE (18862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (20182) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (20182) wifi_station: retry to connect to the AP[0m
+[0;31mE (20862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (22592) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (22602) wifi_station: retry to connect to the AP[0m
+[0;31mE (22862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (24862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (25012) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (25012) wifi_station: retry to connect to the AP[0m
+[0;31mE (26862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (27422) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (27432) wifi_station: retry to connect to the AP[0m
+[0;31mE (28862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (29842) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (29842) wifi_station: retry to connect to the AP[0m
+[0;31mE (30862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (32252) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (32262) wifi_station: retry to connect to the AP[0m
+[0;31mE (32862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (34672) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (34672) wifi_station: retry to connect to the AP[0m
+[0;31mE (34862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (36862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (37092) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (37092) wifi_station: retry to connect to the AP[0m
+[0;31mE (38862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (39502) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (39512) wifi_station: retry to connect to the AP[0m
+[0;31mE (40862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (41922) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (41922) wifi_station: retry to connect to the AP[0m
+[0;31mE (42862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (44332) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (44342) wifi_station: retry to connect to the AP[0m
+[0;31mE (44862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (46752) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (46752) wifi_station: retry to connect to the AP[0m
+[0;31mE (46862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (48862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (49162) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (49172) wifi_station: retry to connect to the AP[0m
+[0;31mE (50862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (51582) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (51582) wifi_station: retry to connect to the AP[0m
+[0;31mE (52862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (54002) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (54002) wifi_station: retry to connect to the AP[0m
+[0;31mE (54862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (56412) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (56412) wifi_station: retry to connect to the AP[0m
+[0;31mE (56862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (58832) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (58832) wifi_station: retry to connect to the AP[0m
+[0;31mE (58862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (60862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (61242) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (61242) wifi_station: retry to connect to the AP[0m
+[0;31mE (62862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (63662) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (63662) wifi_station: retry to connect to the AP[0m
+[0;31mE (64862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (66072) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (66082) wifi_station: retry to connect to the AP[0m
+[0;31mE (66862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (68492) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (68492) wifi_station: retry to connect to the AP[0m
+[0;31mE (68862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (70862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (70902) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (70912) wifi_station: retry to connect to the AP[0m
+[0;31mE (72862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (73322) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (73322) wifi_station: retry to connect to the AP[0m
+[0;31mE (74862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (75732) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (75742) wifi_station: retry to connect to the AP[0m
+[0;31mE (76862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (78152) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (78152) wifi_station: retry to connect to the AP[0m
+[0;31mE (78862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (80572) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (80572) wifi_station: retry to connect to the AP[0m
+[0;31mE (80862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (82862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (82982) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (82982) wifi_station: retry to connect to the AP[0m
+[0;31mE (84862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (85402) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (85402) wifi_station: retry to connect to the AP[0m
+[0;31mE (86862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (87812) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (87822) wifi_station: retry to connect to the AP[0m
+[0;32mI (88162) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (88162) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (88182) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (88202) wifi:state: assoc -> run (0x10)[0m
+[0;31mE (88862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (90862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (92862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (94862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (96862) wifi_station: Socket unable to connect: errno 118[0m
+[0;32mI (98202) wifi:state: run -> init (0xcc00)[0m
+[0;32mI (98212) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (98212) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (98212) wifi_station: retry to connect to the AP[0m
+[0;31mE (98862) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (100632) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (100632) wifi_station: retry to connect to the AP[0m
+[0;32mI (100642) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (100652) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (100662) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (100672) wifi:Association refused temporarily time 1500, comeback time 1600 (TUs)[0m
+[0;31mE (100862) wifi_station: Socket unable to connect: errno 118[0m
+[0;32mI (102312) wifi:state: assoc -> assoc (0x0)[0m
+[0;32mI (102332) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (102362) wifi:connected with ESP32, aid = 1, channel 1, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (102362) wifi:security: WPA2-PSK, phy: lr, rssi: -51[0m
+[0;32mI (102372) wifi:pm start, type: 1[0m
+
+[0;32mI (102372) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (102442) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (102442) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;31mE (102862) wifi_station: Socket unable to connect: errno 118[0m
+[0;32mI (103382) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (103382) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;31mE (104862) wifi_station: Socket unable to connect: errno 104[0m
+[0;31mE (106862) wifi_station: Socket unable to connect: errno 104[0m
+[0;31mE (108862) wifi_station: Socket unable to connect: errno 104[0m
+[0;31mE (110862) wifi_station: Socket unable to connect: errno 104[0m
+[0;31mE (112862) wifi_station: Socket unable to connect: errno 104[0m
+[0;31mE (114862) wifi_station: Socket unable to connect: errno 104[0m
+[0;31mE (116862) wifi_station: Socket unable to connect: errno 104[0m
+[0;31mE (118862) wifi_station: Socket unable to connect: errno 104[0m
+eWA�=���� �Ҳ�����H��'�� ��]E����Ѫ5���oW¸�&BZ��e��e1A*�%=���Hh��Vk�����*�]��eC����.W���0	}Ѳ���A��}Ѳ���A�i�a���:���	�_V�i�A������W�x�j��K�i��ʂ����"���f�l�8V�x�����&b�Y˺���H�+�:��0�����g���S�hW�l�� ���A�#!�Ť'�q�°��l�K�*���i�Q�°�,��ڙ�A������*
+[0;32mI (30) boot: ESP-IDF v5.3.1-395-g707d097b01 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Mar 24 2025 14:30:21[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v1.0[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1f820h (129056) map[0m
+[0;32mI (148) esp_image: segment 1: paddr=0002f848 vaddr=3ffb0000 size=007d0h (  2000) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=84324h (541476) map[0m
+[0;32mI (340) esp_image: segment 3: paddr=000b434c vaddr=3ffb07d0 size=03700h ( 14080) load[0m
+[0;32mI (345) esp_image: segment 4: paddr=000b7a54 vaddr=40080000 size=17458h ( 95320) load[0m
+[0;32mI (394) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (395) boot: Disabling RNG early entropy source...[0m
+[0;32mI (407) cpu_start: Multicore app[0m
+[0;32mI (416) cpu_start: Pro cpu start user code[0m
+[0;32mI (416) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (416) app_init: Application information:[0m
+[0;32mI (419) app_init: Project name:     slave_test[0m
+[0;32mI (424) app_init: App version:      2768a2f[0m
+[0;32mI (429) app_init: Compile time:     Mar 26 2025 09:02:15[0m
+[0;32mI (435) app_init: ELF file SHA256:  b1f5d9f1e...[0m
+[0;32mI (440) app_init: ESP-IDF:          v5.3.1-395-g707d097b01[0m
+[0;32mI (446) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (451) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (456) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (461) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (468) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (474) heap_init: At 3FFB8108 len 00027EF8 (159 KiB): DRAM[0m
+[0;32mI (480) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (487) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (493) heap_init: At 40097458 len 00008BA8 (34 KiB): IRAM[0m
+[0;32mI (501) spi_flash: detected chip: generic[0m
+[0;32mI (504) spi_flash: flash io: dio[0m
+[0;33mW (508) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (522) main_task: Started on CPU0[0m
+[0;32mI (532) main_task: Calling app_main()[0m
+[0;32mI (572) wifi:wifi driver task: 3ffc016c, prio:23, stack:6656, core=0[0m
+[0;32mI (582) wifi:wifi firmware version: 6f4dea5[0m
+[0;32mI (582) wifi:wifi certification version: v7.0[0m
+[0;32mI (592) wifi:config NVS flash: enabled[0m
+[0;32mI (592) wifi:config nano formating: disabled[0m
+[0;32mI (592) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (592) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (602) wifi:Init management short buffer num: 32[0m
+[0;32mI (602) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (612) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (612) wifi:Init static rx buffer num: 10[0m
+[0;32mI (612) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (622) wifi_init: rx ba win: 6[0m
+[0;32mI (622) wifi_init: accept mbox: 6[0m
+[0;32mI (632) wifi_init: tcpip mbox: 32[0m
+[0;32mI (632) wifi_init: udp mbox: 6[0m
+[0;32mI (632) wifi_init: tcp mbox: 6[0m
+[0;32mI (642) wifi_init: tcp tx win: 5760[0m
+[0;32mI (642) wifi_init: tcp rx win: 5760[0m
+[0;32mI (652) wifi_init: tcp mss: 1440[0m
+[0;32mI (652) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (652) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (662) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;33mW (752) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+[0;32mI (782) wifi:mode : sta (4c:11:ae:65:b6:10)[0m
+[0;32mI (782) wifi:enable tsf[0m
+[0;32mI (782) wifi_station: Starting TCP server task[0m
+[0;32mI (782) wifi_station: WIFI station started. Attempting to connect to AP....[0m
+[0;31mE (782) wifi_station: Socket unable to connect: errno 118[0m
+[0;32mI (792) main_task: Returned from app_main()[0m
+[0;32mI (812) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (812) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (822) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (832) wifi:Association refused temporarily time 1500, comeback time 1600 (TUs)[0m
+[0;32mI (2472) wifi:state: assoc -> assoc (0x0)[0m
+[0;32mI (2482) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (2512) wifi:connected with ESP32, aid = 1, channel 1, BW20, bssid = cc:7b:5c:25:5b:55[0m
+[0;32mI (2512) wifi:security: WPA2-PSK, phy: lr, rssi: -50[0m
+[0;32mI (2512) wifi:pm start, type: 1[0m
+
+[0;32mI (2512) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (2582) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (2582) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;31mE (2792) wifi_station: Socket unable to connect: errno 118[0m
+[0;32mI (3522) esp_netif_handlers: sta ip: 192.168.4.2, mask: 255.255.255.0, gw: 192.168.4.1[0m
+[0;32mI (3522) wifi_station: Successfully connected to WIFI. Got ip:192.168.4.2[0m
+[0;32mI (3852) wifi:starting SA query procedure with AP(cc:7b:5c:25:5b:55)[0m
+[0;32mI (3852) wifi:Send SA Query req with transaction id f548[0m
+[0;32mI (4052) wifi:Send SA Query req with transaction id f549[0m
+[0;32mI (4252) wifi:Send SA Query req with transaction id f54a[0m
+[0;32mI (4452) wifi:Send SA Query req with transaction id f54b[0m
+[0;32mI (4652) wifi:Send SA Query req with transaction id f54c[0m
+[0;31mE (4792) wifi_station: Socket unable to connect: errno 104[0m
+[0;32mI (4852) wifi:Send SA Query req with transaction id f54d[0m
+[0;32mI (4872) wifi:No response to 6 SA Queries, reset connection sending disassoc[0m
+[0;32mI (4872) wifi:state: run -> init (0xd100)[0m
+[0;32mI (4882) wifi:pm stop, total sleep time: 108022 us / 2363579 us[0m
+
+[0;32mI (4882) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (4892) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (4892) wifi_station: retry to connect to the AP[0m
+[0;32mI (4922) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4922) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (4932) wifi:state: auth -> init (0x6c0)[0m
+[0;32mI (4932) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;31mE (4942) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (4942) wifi_station: retry to connect to the AP[0m
+[0;31mE (6792) wifi_station: Socket unable to connect: errno 118[0m
+[0;31mE (7352) wifi_station: WIFI disconnected. Retrying connection....[0m
+[0;33mW (7362) wifi_station: retry to connect to the AP[0m
+[0;31mE (8792) wifi_station: Socket unable to connect: errno 118[0m
+[0;

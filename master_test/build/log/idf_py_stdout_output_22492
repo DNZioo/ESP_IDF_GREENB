@@ -1,0 +1,151 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D D:\AIFARM\ESP_IDF\master_test\build\bootloader\esp-idf\esptool_py && d:\esp\tools\python_env\idf5.3_py3.11_env\Scripts\python.exe D:/esp/esp-idf/v5.3/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 D:/AIFARM/ESP_IDF/master_test/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[2/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+In file included from D:/AIFARM/ESP_IDF/master_test/main/main.c:12:
+D:/esp/esp-idf/v5.3/esp-idf/components/esp_event/include/esp_event_loop.h:9:2: warning: #warning "esp_event_loop.h is deprecated, please include esp_event.h instead" [-Wcpp]
+    9 | #warning "esp_event_loop.h is deprecated, please include esp_event.h instead"
+      |  ^~~~~~~
+In file included from D:/AIFARM/ESP_IDF/master_test/main/main.c:11:
+D:/AIFARM/ESP_IDF/master_test/main/main.c: In function 'event_handler':
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:49: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                 |
+      |                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:435:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  435 |         if (level==ESP_LOG_ERROR )          { esp_log_write(ESP_LOG_ERROR,      tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:9: note: in expansion of macro 'ESP_LOGI'
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+In file included from D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip_addr.h:43,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:46,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from D:/AIFARM/ESP_IDF/master_test/main/main.c:14:
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:49: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                 |
+      |                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:436:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  436 |         else if (level==ESP_LOG_WARN )      { esp_log_write(ESP_LOG_WARN,       tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:9: note: in expansion of macro 'ESP_LOGI'
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:49: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                 |
+      |                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:437:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  437 |         else if (level==ESP_LOG_DEBUG )     { esp_log_write(ESP_LOG_DEBUG,      tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:9: note: in expansion of macro 'ESP_LOGI'
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:49: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                 |
+      |                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:438:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  438 |         else if (level==ESP_LOG_VERBOSE )   { esp_log_write(ESP_LOG_VERBOSE,    tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:9: note: in expansion of macro 'ESP_LOGI'
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:49: warning: passing argument 1 of 'ip4addr_ntoa' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |                                                 ^~~~~~~~~~~~~~~~~~
+      |                                                 |
+      |                                                 esp_ip4_addr_t * {aka struct esp_ip4_addr *}
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:439:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  439 |         else                                { esp_log_write(ESP_LOG_INFO,       tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/log/include/esp_log.h:367:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  367 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:37:9: note: in expansion of macro 'ESP_LOGI'
+   37 |         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+      |         ^~~~~~~~
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/lwip/src/include/lwip/ip4_addr.h:207:38: note: expected 'const ip4_addr_t *' {aka 'const struct ip4_addr *'} but argument is of type 'esp_ip4_addr_t *' {aka 'struct esp_ip4_addr *'}
+  207 | char *ip4addr_ntoa(const ip4_addr_t *addr);
+      |                    ~~~~~~~~~~~~~~~~~~^~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c: In function 'tcp_task':
+D:/AIFARM/ESP_IDF/master_test/main/main.c:143:71: warning: passing argument 3 of 'accept' from incompatible pointer type [-Wincompatible-pointer-types]
+  143 |         int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
+      |                                                                       ^~~~~~~~
+      |                                                                       |
+      |                                                                       uint * {aka unsigned int *}
+D:/esp/esp-idf/v5.3/esp-idf/components/lwip/include/lwip/sockets.h:15:65: note: expected 'socklen_t *' {aka 'long unsigned int *'} but argument is of type 'uint *' {aka 'unsigned int *'}
+   15 | static inline int accept(int s,struct sockaddr *addr,socklen_t *addrlen)
+      |                                                      ~~~~~~~~~~~^~~~~~~
+In file included from D:/esp/esp-idf/v5.3/esp-idf/components/esp_hw_support/include/esp_intr_alloc.h:12,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/esp_hw_support/include/esp_cpu.h:20,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/esp_hw_support/include/spinlock.h:11,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:49,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/portable.h:57,
+                 from D:/esp/esp-idf/v5.3/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/FreeRTOS.h:69,
+                 from D:/AIFARM/ESP_IDF/master_test/main/main.c:2:
+D:/AIFARM/ESP_IDF/master_test/main/main.c: In function 'app_main':
+D:/AIFARM/ESP_IDF/master_test/main/main.c:162:78: warning: passing argument 3 of 'esp_event_handler_register' from incompatible pointer type [-Wincompatible-pointer-types]
+  162 |     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL));
+      |                                                                              ^~~~~~~~~~~~~~
+      |                                                                              |
+      |                                                                              esp_err_t (*)(void *, const char *, int32_t,  void *) {aka int (*)(void *, const char *, long int,  void *)}
+D:/esp/esp-idf/v5.3/esp-idf/components/esp_common/include/esp_err.h:116:30: note: in definition of macro 'ESP_ERROR_CHECK'
+  116 |         esp_err_t err_rc_ = (x);                                        \
+      |                              ^
+In file included from D:/esp/esp-idf/v5.3/esp-idf/components/esp_wifi/include/esp_wifi.h:55,
+                 from D:/AIFARM/ESP_IDF/master_test/main/main.c:6:
+D:/esp/esp-idf/v5.3/esp-idf/components/esp_event/include/esp_event.h:139:58: note: expected 'esp_event_handler_t' {aka 'void (*)(void *, const char *, long int,  void *)'} but argument is of type 'esp_err_t (*)(void *, const char *, int32_t,  void *)' {aka 'int (*)(void *, const char *, long int,  void *)'}
+  139 |                                      esp_event_handler_t event_handler,
+      |                                      ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+D:/AIFARM/ESP_IDF/master_test/main/main.c:163:79: warning: passing argument 3 of 'esp_event_handler_register' from incompatible pointer type [-Wincompatible-pointer-types]
+  163 |     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &event_handler, NULL));
+      |                                                                               ^~~~~~~~~~~~~~
+      |                                                                               |
+      |                                                                               esp_err_t (*)(void *, const char *, int32_t,  void *) {aka int (*)(void *, const char *, long int,  void *)}
+D:/esp/esp-idf/v5.3/esp-idf/components/esp_common/include/esp_err.h:116:30: note: in definition of macro 'ESP_ERROR_CHECK'
+  116 |         esp_err_t err_rc_ = (x);                                        \
+      |                              ^
+D:/esp/esp-idf/v5.3/esp-idf/components/esp_event/include/esp_event.h:139:58: note: expected 'esp_event_handler_t' {aka 'void (*)(void *, const char *, long int,  void *)'} but argument is of type 'esp_err_t (*)(void *, const char *, int32_t,  void *)' {aka 'int (*)(void *, const char *, long int,  void *)'}
+  139 |                                      esp_event_handler_t event_handler,
+      |                                      ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+[3/7] Linking C static library esp-idf\main\libmain.a
+[4/7] Generating ld/sections.ld
+[5/7] Linking CXX executable master_test.elf
+[6/7] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated D:/AIFARM/ESP_IDF/master_test/build/master_test.bin
+[7/7] cmd.exe /C "cd /D D:\AIFARM\ESP_IDF\master_test\build\esp-idf\esptool_py && d:\esp\tools\python_env\idf5.3_py3.11_env\Scripts\python.exe D:/esp/esp-idf/v5.3/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app D:/AIFARM/ESP_IDF/master_test/build/partition_table/partition-table.bin D:/AIFARM/ESP_IDF/master_test/build/master_test.bin"
+master_test.bin binary size 0xbf6f0 bytes. Smallest app partition is 0x100000 bytes. 0x40910 bytes (25%) free.
