@@ -9,7 +9,6 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 #include "esp_log.h"
-#include "esp_event_loop.h"
 #include "driver/gpio.h"
 #include "lwip/sockets.h"
 #include "lwip/netdb.h"
@@ -21,8 +20,7 @@
 #define WIFI_SSID_ROUTER "DNZio"
 #define WIFI_PASS_ROUTER "11112222"
 #define PORT 8888
-
-static const char *TAG = "TCP_MASTER";
+static const char *TAG = "MASTER";
 static int sock;
 
 static EventGroupHandle_t wifi_event_group;
@@ -30,64 +28,43 @@ const int CONNECTED_BIT = BIT0;
 
 typedef struct {
     uint8_t address;         // Target device address (1 byte)
-    uint8_t function_code;   // Function code (1 byte)
-    uint16_t data_len;       // Length of the payload (2 bytes)
-    uint8_t data[256];       // Payload data (variable length, up to 256 bytes)
+    uint8_t state;           // State (1 byte)
     uint16_t checksum;       // Error-checking mechanism (2 bytes)
 } modbus_frame_t;
 
-// Calculate checksum
-uint16_t calculate_checksum(const uint8_t *data, size_t len) {
-    uint16_t checksum = 0;
-    for (size_t i = 0; i < len; i++) {
-        checksum += data[i];
-    }
-    return checksum;
+uint16_t calculate_checksum(uint8_t id, uint8_t state) {
+    uint16_t sum = (uint16_t)id + (uint16_t)state; // Ensure 16-bit addition
+    return ~sum; // 1's complement
 }
 
-// Serialize frame into raw bytes
-void serialize_frame(uint8_t *buffer, const modbus_frame_t *frame) {
-    buffer[0] = frame->address;
-    buffer[1] = frame->function_code;
-    buffer[2] = (frame->data_len >> 8) & 0xFF; 
-    buffer[3] = frame->data_len & 0xFF;
-
-    memcpy(&buffer[4], frame->data, frame->data_len);
-
-    uint16_t checksum = calculate_checksum(buffer, 4 + frame->data_len); // Exclude checksum field
-    buffer[4 + frame->data_len] = (checksum >> 8) & 0xFF; // Big-endian
-    buffer[5 + frame->data_len] = checksum & 0xFF;
-}
-void handle_client(int client_sock) {
-    modbus_frame_t frame;
-    memset(&frame, 0, sizeof(frame));
-
-    // Prepare the frame
-    frame.address = 0x02;       // Target slave address
-    frame.function_code = 0x03; // Example function code
-    const char *message = "Hello";
-    frame.data_len = strlen(message);
-    memcpy(frame.data, message, frame.data_len);
-
-    // Serialize the frame
-    uint8_t buffer[264]; // Max frame size: 1 + 1 + 2 + 256 + 2
-    serialize_frame(buffer, &frame);
-
-    // Send the frame
-    int sent = send(client_sock, buffer, 4 + frame.data_len + 2, 0); // 4 bytes for header, data_len, and 2 bytes for checksum
-    if (sent < 0) {
-        ESP_LOGE(TAG, "Error sending data: errno %d", errno);
-        close(client_sock);
-        return;
-    }
-    ESP_LOGI(TAG, "Sent frame: Address=%d, Function=%d, Data=%s", frame.address, frame.function_code, frame.data);
-
-    // Wait for acknowledgment or keep the connection alive briefly
-    vTaskDelay(1000 / portTICK_PERIOD_MS); // Keep the connection open for 2 seconds
+// Verify checksum using your specified method
+int validate_frame(const uint8_t *buffer) {
+    // Extract 8-bit fields
+    uint8_t id = buffer[0];
+    uint8_t state = buffer[1];
+    
+    // Reconstruct 16-bit checksum (little-endian)
+    uint16_t received_checksum = (buffer[3] << 8) | buffer[2];
+    
+    // Calculate verification sum (16-bit arithmetic)
+    uint16_t data_sum = (uint16_t)id + (uint16_t)state;
+    uint16_t verification_sum = data_sum + received_checksum;
+    uint16_t result = ~verification_sum;
+    
+    // Debug output
+    ESP_LOGI(TAG, "Validation: ID = %d State = %d Checksum = %d", id, state, result);
+    return (result == 0) ? 0 : -1;
 }
 
+// Modify the deserialize_frame function:
+int deserialize_frame(modbus_frame_t *frame, const uint8_t *buffer) {
+    frame->address = buffer[0];
+    frame->state = buffer[1];
+    frame->checksum = ((uint16_t)buffer[3] << 8) | buffer[2];
+    
+    return validate_frame(buffer);
+}
 
-//TCP task
 void tcp_task(void *pvParameters) {
     struct sockaddr_in destAddr;
     destAddr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -99,7 +76,7 @@ void tcp_task(void *pvParameters) {
     if (sock < 0) {
         ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
         vTaskDelete(NULL);
-        return;
+        // return;
     }
 
     // Bind the socket
@@ -108,7 +85,7 @@ void tcp_task(void *pvParameters) {
         ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
         close(sock);
         vTaskDelete(NULL);
-        return;
+        // return;
     }
     ESP_LOGI(TAG, "Socket bound successfully to port %d.", PORT);
 
@@ -118,7 +95,7 @@ void tcp_task(void *pvParameters) {
         ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
         close(sock);
         vTaskDelete(NULL);
-        return;
+        // return;
     }
     ESP_LOGI(TAG, "Socket listening");
 
@@ -129,24 +106,46 @@ void tcp_task(void *pvParameters) {
         int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
         if (clientSock < 0) {
             ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
-            continue; //continue listening for new connections
+            continue; 
         }
 
         char clientIP[16];
         inet_ntoa_r(sourceAddr.sin_addr, clientIP, sizeof(clientIP));
         ESP_LOGI(TAG, "Client connected from IP: %s, port: %d", clientIP, ntohs(sourceAddr.sin_port));
+        // Set a timeout for recv()
+        struct timeval timeout = { .tv_sec = 5, .tv_usec = 0 }; // 5-second timeout
+        setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
 
-        handle_client(clientSock);
-        close(clientSock);
+        while (1){
+            uint8_t buffer[4]; // Exactly 4 bytes expected
+            int bytes_received = recv(clientSock, buffer, sizeof(buffer), 0);
+            
+            if (bytes_received == 4) {
+                modbus_frame_t frame;
+                if (deserialize_frame(&frame, buffer) == 0) {
+                    ESP_LOGI(TAG, "Valid frame - Address=%d, State=%d, checksum=%d",
+                             frame.address, frame.state, frame.checksum);
+                } else {
+                    ESP_LOGE(TAG, "Checksum mismatch! Frame corrupted.");
+                }
+            } else if (bytes_received < 0) {
+                ESP_LOGE(TAG, "Error receiving data: errno %d", errno);
+                close(clientSock);
+                break;
+            }
+            vTaskDelay(10 / portTICK_PERIOD_MS); 
+        }   
     }
 }
+
+// WiFi Event Handler
 static esp_err_t event_handler(void *ctx, esp_event_base_t event_base, int32_t event_id, void *event_data) {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
-        ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
+        ESP_LOGI(TAG, "Got IP: %s", ip4addr_ntoa(&event->ip_info.ip));
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         ESP_LOGE(TAG, "Disconnected from router. Retrying connection...");
         esp_wifi_connect();
@@ -154,6 +153,7 @@ static esp_err_t event_handler(void *ctx, esp_event_base_t event_base, int32_t e
     }
     return ESP_OK;
 }
+
 void app_main(void) {
     nvs_flash_init();
     esp_netif_init();
