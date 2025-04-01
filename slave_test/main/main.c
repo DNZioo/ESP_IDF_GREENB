@@ -20,6 +20,7 @@
 #define BUTTON_PIN GPIO_NUM_2
 
 static const char *TAG = "SLAVE";
+bool connected = false;
 
 typedef struct {
     uint8_t slave_id;
@@ -27,23 +28,12 @@ typedef struct {
     uint16_t checksum;
 } custom_frame_t;
 
-// // Calculate checksum
-// uint16_t calculate_checksum(const uint8_t *data, size_t len) {
-//     uint16_t checksum ,sum = 0, i;
-//     for (i = 0; i < len; i++) 
-//     sum += data[i];
-//     checksum =~ sum; //1's complement
-//     return checksum;
-// }
-
-// Calculate 16-bit checksum (1's complement of sum)
 uint16_t calculate_checksum(const uint8_t *data, size_t len) {
     uint32_t sum = 0; // Use 32-bit to prevent overflow
     
     for (size_t i = 0; i < len; i++) {
         sum += data[i];
     }
-    
     // Fold 32-bit sum to 16-bit
     while (sum >> 16) {
         sum = (sum & 0xFFFF) + (sum >> 16);
@@ -69,49 +59,21 @@ void send_button_state(int sock, bool pressed) {
     int sent = send(sock, buffer, 4, 0);
     if (sent < 0) {
         ESP_LOGE(TAG, "Error sending data");
+        close(sock);
+        connected = false;
     } else {
-        ESP_LOGI(TAG, "Sent: ID=0x%02X, State=0x%02X, Checksum=0x%04X", 
-               buffer[0], buffer[1], checksum);
+        ESP_LOGI(TAG, "Sent: ID = %d, State = %d, Checksum=0x%04X", buffer[0], buffer[1], checksum);
     }
 }
 
-// // Send button state to the server
-// void send_button_state(int sock, bool pressed) {
-//     custom_frame_t frame = {
-//         .slave_id = SLAVE_ID,
-//         .state = pressed ? 1 : 0,
-//         .checksum = 0  
-//     };
-
-//     // Calculate checksum
-//     uint8_t temp_buffer[2] = {frame.slave_id, frame.state};
-//     frame.checksum = calculate_checksum(temp_buffer, 2);
-
-//     // Serialize the frame
-//     uint8_t buffer[5];
-//     serialize_frame(&frame, buffer);
-
-//     // Send the serialized frame
-//     int sent = send(sock, buffer, sizeof(buffer), 0);
-//     if (sent < 0) {
-//         ESP_LOGE(TAG, "Error sending data: errno %d", errno);
-//         close(sock);
-//         return;
-//     } else {
-//         ESP_LOGI(TAG, "Sent button state: %d", pressed);
-//     }
-// }
-
-// TCP Task
 static void tcp_task(void *pvParameters) {
-    struct sockaddr_in destAddr;
-    destAddr.sin_addr.s_addr = inet_addr(TCP_SERVER_IP);
-    destAddr.sin_family = AF_INET;
-    destAddr.sin_port = htons(TCP_PORT);
+    struct sockaddr_in destAddr = {
+        .sin_addr.s_addr = inet_addr(TCP_SERVER_IP),
+        .sin_family = AF_INET,
+        .sin_port = htons(TCP_PORT)
+    };
 
     int sock = -1; 
-    bool connected = false;
-
     while (1) {
         if (!connected) {
             // Attempt to create a new socket
@@ -135,7 +97,7 @@ static void tcp_task(void *pvParameters) {
         }
 
         // Read button state
-        bool button_pressed = gpio_get_level(BUTTON_PIN) == 0; // Assuming active-low button
+        bool button_pressed = gpio_get_level(BUTTON_PIN) == 1; // Assuming active-High button
         send_button_state(sock, button_pressed);
 
         vTaskDelay(5000 / portTICK_PERIOD_MS); // Send button state every second
@@ -196,8 +158,8 @@ void app_main(void) {
     gpio_config_t io_conf = {
         .pin_bit_mask = (1ULL << BUTTON_PIN),
         .mode = GPIO_MODE_INPUT,
-        .pull_up_en = GPIO_PULLUP_ENABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_ENABLE,
         .intr_type = GPIO_INTR_DISABLE
     };
     gpio_config(&io_conf);

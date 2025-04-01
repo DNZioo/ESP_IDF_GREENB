@@ -113,7 +113,7 @@ void tcp_task(void *pvParameters) {
         inet_ntoa_r(sourceAddr.sin_addr, clientIP, sizeof(clientIP));
         ESP_LOGI(TAG, "Client connected from IP: %s, port: %d", clientIP, ntohs(sourceAddr.sin_port));
         // Set a timeout for recv()
-        struct timeval timeout = { .tv_sec = 5, .tv_usec = 0 }; // 5-second timeout
+        struct timeval timeout = { .tv_sec = 10, .tv_usec = 0 }; // 5-second timeout
         setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
 
         while (1){
@@ -123,8 +123,8 @@ void tcp_task(void *pvParameters) {
             if (bytes_received == 4) {
                 modbus_frame_t frame;
                 if (deserialize_frame(&frame, buffer) == 0) {
-                    ESP_LOGI(TAG, "Valid frame - Address=%d, State=%d, checksum=%d",
-                             frame.address, frame.state, frame.checksum);
+                    // ESP_LOGI(TAG, "Valid frame - Address=%d, State=%d, checksum=%d",
+                    //          frame.address, frame.state, frame.checksum);
                 } else {
                     ESP_LOGE(TAG, "Checksum mismatch! Frame corrupted.");
                 }
