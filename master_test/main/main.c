@@ -25,44 +25,93 @@ static int sock;
 
 static EventGroupHandle_t wifi_event_group;
 const int CONNECTED_BIT = BIT0;
+uint16_t result;
+typedef enum {
+    FRAME_TYPE_SENSOR = 0x01,
+    FRAME_TYPE_COMMAND = 0x02
+} frame_type_t;
 
 typedef struct {
-    uint8_t address;         // Target device address (1 byte)
-    uint8_t state;           // State (1 byte)
-    uint16_t checksum;       // Error-checking mechanism (2 bytes)
-} modbus_frame_t;
+    uint16_t moisture;
+    uint16_t ec;
+    int16_t temp;
+} sensor_data_t;
 
-uint16_t calculate_checksum(uint8_t id, uint8_t state) {
-    uint16_t sum = (uint16_t)id + (uint16_t)state; // Ensure 16-bit addition
-    return ~sum; // 1's complement
+typedef struct {
+    uint8_t slave_id;
+    frame_type_t type;
+    union {
+        sensor_data_t sensors;
+        uint8_t command;
+    } data;
+    uint16_t checksum;
+} custom_frame_t;
+
+// Updated checksum validation function
+int validate_frame(const custom_frame_t *frame) {
+    uint32_t sum = frame->slave_id + frame->type;
+
+    if (frame->type == FRAME_TYPE_SENSOR) {
+        sum += frame->data.sensors.moisture;
+        sum += frame->data.sensors.ec;
+        sum += (uint16_t)frame->data.sensors.temp;
+    } else {
+        sum += frame->data.command;
+    }
+    sum += frame->checksum;
+    // Calculate 1's complement of the sum
+    uint16_t result = ~(sum & 0xFFFF);
+    return 0;
 }
 
-// Verify checksum using your specified method
-int validate_frame(const uint8_t *buffer) {
-    // Extract 8-bit fields
-    uint8_t id = buffer[0];
-    uint8_t state = buffer[1];
+// Updated checksum calculation (if you need to generate frames)
+uint16_t calculate_checksum(const custom_frame_t *frame) {
+    uint32_t sum = 0;
     
-    // Reconstruct 16-bit checksum (little-endian)
-    uint16_t received_checksum = (buffer[3] << 8) | buffer[2];
+    // Sum all fields except checksum
+    sum += frame->slave_id;
+    sum += frame->type;
     
-    // Calculate verification sum (16-bit arithmetic)
-    uint16_t data_sum = (uint16_t)id + (uint16_t)state;
-    uint16_t verification_sum = data_sum + received_checksum;
-    uint16_t result = ~verification_sum;
+    if (frame->type == FRAME_TYPE_SENSOR) {
+        sum += frame->data.sensors.moisture;
+        sum += frame->data.sensors.ec;
+        sum += (uint16_t)frame->data.sensors.temp;
+    } else {
+        sum += frame->data.command;
+    }
     
-    // Debug output
-    ESP_LOGI(TAG, "Validation: ID = %d State = %d Checksum = %d", id, state, result);
-    return (result == 0) ? 0 : -1;
+    // Return 1's complement of the sum
+    return ~(sum & 0xFFFF);
 }
 
-// Modify the deserialize_frame function:
-int deserialize_frame(modbus_frame_t *frame, const uint8_t *buffer) {
-    frame->address = buffer[0];
-    frame->state = buffer[1];
-    frame->checksum = ((uint16_t)buffer[3] << 8) | buffer[2];
-    
-    return validate_frame(buffer);
+void process_frame(const custom_frame_t *frame) {
+    if (validate_frame(frame) != 0) {
+        ESP_LOGE(TAG, "Invalid frame received from slave %d", frame->slave_id);
+        return;
+    }
+
+    switch(frame->type) {
+        case FRAME_TYPE_SENSOR:
+            ESP_LOGI(TAG, "Received data: slave = %d Moisture: %d EC: %d Temp: %d Checksum = 0x%04X valid = %d",
+                    frame->slave_id,
+                    frame->data.sensors.moisture,
+                    frame->data.sensors.ec,
+                    frame->data.sensors.temp,
+                    frame->checksum,
+                    result);
+            break;
+            
+        case FRAME_TYPE_COMMAND:
+            ESP_LOGI(TAG, "Received cmd: slave = %d State: %d Checksum = 0x%04X valid = %d",
+                    frame->slave_id,
+                    frame->data.command,
+                    frame->checksum,
+                    result);
+            break;
+            
+        default:
+            ESP_LOGE(TAG, "Unknown frame type: 0x%02X", frame->type);
+    }
 }
 
 void tcp_task(void *pvParameters) {
@@ -116,21 +165,18 @@ void tcp_task(void *pvParameters) {
         struct timeval timeout = { .tv_sec = 10, .tv_usec = 0 }; // 5-second timeout
         setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
 
-        while (1){
-            uint8_t buffer[4]; // Exactly 4 bytes expected
-            int bytes_received = recv(clientSock, buffer, sizeof(buffer), 0);
+        while (1) {
+            custom_frame_t frame;
+            int received = recv(clientSock, &frame, sizeof(frame), 0);
             
-            if (bytes_received == 4) {
-                modbus_frame_t frame;
-                if (deserialize_frame(&frame, buffer) == 0) {
-                    // ESP_LOGI(TAG, "Valid frame - Address=%d, State=%d, checksum=%d",
-                    //          frame.address, frame.state, frame.checksum);
+            if (received == sizeof(frame)) {
+                if (validate_frame(&frame) == 0) {
+                    process_frame(&frame);
                 } else {
-                    ESP_LOGE(TAG, "Checksum mismatch! Frame corrupted.");
+                    ESP_LOGE(TAG, "Invalid checksum from slave %d", frame.slave_id);
                 }
-            } else if (bytes_received < 0) {
-                ESP_LOGE(TAG, "Error receiving data: errno %d", errno);
-                close(clientSock);
+            } else if (received <= 0) {
+                ESP_LOGW(TAG, "Client disconnected");
                 break;
             }
             vTaskDelay(10 / portTICK_PERIOD_MS); 
@@ -202,8 +248,5 @@ void app_main(void) {
         // Optionally, disable STA mode to save resources
         ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
     }
-
-    ESP_LOGI(TAG, "WiFi setup complete");
     xTaskCreate(tcp_task, "TCP_SERVER", configMINIMAL_STACK_SIZE + 2048, NULL, 5, NULL);
-
 }

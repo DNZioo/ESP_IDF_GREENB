@@ -12,7 +12,7 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 
-#define WIFI_SSID "ESP32"
+#define WIFI_SSID "DNZio"
 #define WIFI_PASS "11112222"
 #define TCP_SERVER_IP "192.168.4.1"
 #define TCP_PORT 8888
@@ -21,48 +21,118 @@
 
 static const char *TAG = "SLAVE";
 bool connected = false;
+int sock = -1; 
+
+// Custom Frame Definitions
+typedef enum {
+    FRAME_TYPE_SENSOR = 0x01,  // Sensor data frame
+    FRAME_TYPE_COMMAND = 0x02   // Command/button frame
+} frame_type_t;
 
 typedef struct {
-    uint8_t slave_id;
-    uint8_t state;     
+    uint16_t moisture;  
+    uint16_t ec;        
+    int16_t  temp;      
+} sensor_data_t;
+
+typedef struct {
+    uint8_t slave_id;   // 0x01
+    frame_type_t type;  // FRAME_TYPE_SENSOR/COMMAND
+    union {
+        sensor_data_t sensors;
+        uint8_t command;
+    } data;
     uint16_t checksum;
 } custom_frame_t;
 
-uint16_t calculate_checksum(const uint8_t *data, size_t len) {
-    uint32_t sum = 0; // Use 32-bit to prevent overflow
+uint16_t calculate_checksum(const custom_frame_t *frame) {
+    uint32_t sum = 0;
     
-    for (size_t i = 0; i < len; i++) {
-        sum += data[i];
+    // Common fields for all frame types
+    sum += frame->slave_id;
+    sum += frame->type;
+    
+    // Handle different frame types
+    if (frame->type == FRAME_TYPE_SENSOR) {
+        // Sensor data frame
+        sum += frame->data.sensors.moisture;
+        sum += frame->data.sensors.ec;
+        sum += (uint16_t)frame->data.sensors.temp; // Handle signed value
+    } else {
+        // Command frame
+        sum += frame->data.command;
     }
+    
     // Fold 32-bit sum to 16-bit
     while (sum >> 16) {
         sum = (sum & 0xFFFF) + (sum >> 16);
     }
     
-    return (uint16_t)(~sum); // Return 16-bit 1's complement
+    return (uint16_t)(~sum);  // One's complement
 }
 
-void send_button_state(int sock, bool pressed) {
-    uint8_t buffer[4]; // ID, State, Checksum(L), Checksum(H)
+// --- Send Sensor Data (10s interval) ---
+void send_sensor_data() {
+    custom_frame_t frame = {
+        .slave_id = 0x01,
+        .type = FRAME_TYPE_SENSOR,
+        .data.sensors = {50, 1200, 25},
+        .checksum = 0  // Will be calculated
+    };
     
-    buffer[0] = SLAVE_ID;
-    buffer[1] = pressed ? 1 : 0;
-    
-    // Calculate 16-bit checksum of first 2 bytes
-    uint16_t checksum = calculate_checksum(buffer, 2);
-    
-    // Store checksum in little-endian format
-    buffer[2] = checksum & 0xFF;       // Low byte (0xFD)
-    buffer[3] = (checksum >> 8) & 0xFF; // High byte (0xFF)
-    
-    // Send the 4-byte frame
-    int sent = send(sock, buffer, 4, 0);
+    frame.checksum = calculate_checksum(&frame);
+
+    int sent = send(sock, &frame, sizeof(frame), 0);
     if (sent < 0) {
-        ESP_LOGE(TAG, "Error sending data");
+        ESP_LOGE(TAG, "Error sending sensor data");
         close(sock);
         connected = false;
     } else {
-        ESP_LOGI(TAG, "Sent: ID = %d, State = %d, Checksum=0x%04X", buffer[0], buffer[1], checksum);
+        ESP_LOGI(TAG, "Sent data: ID = %d, type = %d, Moisture=%d, EC=%d, Temp=%d, checksum = 0x%04X", 
+                frame.slave_id, frame.type, frame.data.sensors.moisture, frame.data.sensors.ec, frame.data.sensors.temp, frame.checksum);
+    }
+}
+
+void send_button_state() {
+    bool button_pressed = gpio_get_level(BUTTON_PIN) == 1;
+
+    custom_frame_t frame = {
+        .slave_id = SLAVE_ID,
+        .type = FRAME_TYPE_COMMAND,
+        .data.command = button_pressed ? 1 : 0,
+        .checksum = 0  // Initialize before calculation
+    };
+
+    frame.checksum = calculate_checksum(&frame);
+
+    int sent = send(sock, &frame, sizeof(frame), 0);
+    if (sent < 0) {
+        ESP_LOGE(TAG, "Error sending command");
+        close(sock);
+        connected = false;
+    } else {
+        ESP_LOGI(TAG, "Sent cmd: ID = %d, type = %d, button = %d, Checksum=0x%04X", 
+                frame.slave_id, frame.type, frame.data.command, frame.checksum);
+    }
+}
+
+// --- Task for Sensor Data (10s) ---
+void sensor_task(void *pvParameters) {
+    while (1) {
+        if (connected) {
+            send_sensor_data();
+        }
+        vTaskDelay(10000 / portTICK_PERIOD_MS); // 10s delay
+    }
+}
+
+// --- Task for Button Commands (5s) ---
+void command_task(void *pvParameters) {
+    while (1) {
+        if (connected) {
+            send_button_state();
+        }
+        vTaskDelay(5000 / portTICK_PERIOD_MS); // 5s delay
     }
 }
 
@@ -73,7 +143,6 @@ static void tcp_task(void *pvParameters) {
         .sin_port = htons(TCP_PORT)
     };
 
-    int sock = -1; 
     while (1) {
         if (!connected) {
             // Attempt to create a new socket
@@ -83,7 +152,6 @@ static void tcp_task(void *pvParameters) {
                 vTaskDelay(2000 / portTICK_PERIOD_MS); // Wait before retrying
                 continue;
             }
-
             // Attempt to connect to the server
             int err = connect(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
             if (err != 0) {
@@ -95,12 +163,7 @@ static void tcp_task(void *pvParameters) {
             ESP_LOGI(TAG, "Successfully connected to TCP server");
             connected = true;
         }
-
-        // Read button state
-        bool button_pressed = gpio_get_level(BUTTON_PIN) == 1; // Assuming active-High button
-        send_button_state(sock, button_pressed);
-
-        vTaskDelay(5000 / portTICK_PERIOD_MS); // Send button state every second
+        vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
 }
 
@@ -163,11 +226,10 @@ void app_main(void) {
         .intr_type = GPIO_INTR_DISABLE
     };
     gpio_config(&io_conf);
-
-    // Initialize WiFi
     wifi_init_sta();
 
-    // Start TCP Task
-    ESP_LOGI(TAG, "Starting TCP task");
     xTaskCreate(tcp_task, "tcp_task", 4096, NULL, 5, NULL);
+    xTaskCreate(sensor_task, "sensor_task", 2048, NULL, 5, NULL);
+    xTaskCreate(command_task, "command_task", 2048, NULL, 5, NULL);
+
 }

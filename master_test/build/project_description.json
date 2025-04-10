@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "master_test",
-    "project_version":    "94ca3a58-dirty",
+    "project_version":    "b993d916-dirty",
     "project_path":       "D:/AIFARM/ESP_IDF/master_test",
     "idf_path":           "D:/esp/esp-idf/v5.3/esp-idf",
     "build_dir":          "D:/AIFARM/ESP_IDF/master_test/build",

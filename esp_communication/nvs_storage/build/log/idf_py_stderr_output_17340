@@ -1,0 +1,77 @@
+CMake Error at D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:948 (file):
+  file failed to open for reading (No such file or directory):
+
+    D:/AIFARM/ESP_IDF/esp_communication/nvs_storage/build/CMakeFiles/3.24.0/CompilerIdCXX/a.out
+Call Stack (most recent call first):
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:11 (CMAKE_DETERMINE_COMPILER_ID_CHECK)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:59 (__determine_compiler_id_test)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCXXCompiler.cmake:120 (CMAKE_DETERMINE_COMPILER_ID)
+  D:/esp/esp-idf/v5.3/esp-idf/tools/cmake/project.cmake:564 (__project)
+  CMakeLists.txt:8 (project)
+
+
+CMake Error at D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:951 (string):
+  string begin index: 1 is out of range 0 - 0
+Call Stack (most recent call first):
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:11 (CMAKE_DETERMINE_COMPILER_ID_CHECK)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:59 (__determine_compiler_id_test)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCXXCompiler.cmake:120 (CMAKE_DETERMINE_COMPILER_ID)
+  D:/esp/esp-idf/v5.3/esp-idf/tools/cmake/project.cmake:564 (__project)
+  CMakeLists.txt:8 (project)
+
+
+CMake Error at D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:959 (math):
+  math cannot parse the expression: " * 16 + ": syntax error, unexpected
+  exp_TIMES (2).
+Call Stack (most recent call first):
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:11 (CMAKE_DETERMINE_COMPILER_ID_CHECK)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:59 (__determine_compiler_id_test)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCXXCompiler.cmake:120 (CMAKE_DETERMINE_COMPILER_ID)
+  D:/esp/esp-idf/v5.3/esp-idf/tools/cmake/project.cmake:564 (__project)
+  CMakeLists.txt:8 (project)
+
+
+CMake Error at D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:961 (file):
+  file failed to open for reading (No such file or directory):
+
+    D:/AIFARM/ESP_IDF/esp_communication/nvs_storage/build/CMakeFiles/3.24.0/CompilerIdCXX/a.out
+Call Stack (most recent call first):
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:11 (CMAKE_DETERMINE_COMPILER_ID_CHECK)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake:59 (__determine_compiler_id_test)
+  D:/esp/tools/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeDetermineCXXCompiler.cmake:120 (CMAKE_DETERMINE_COMPILER_ID)
+  D:/esp/esp-idf/v5.3/esp-idf/tools/cmake/project.cmake:564 (__project)
+  CMakeLists.txt:8 (project)
+
+
+CMake Error at D:/esp/esp-idf/v5.3/esp-idf/tools/cmake/component.cmake:251 (message):
+  Traceback (most recent call last):
+
+    File "<frozen runpy>", line 198, in _run_module_as_main
+    File "<frozen runpy>", line 88, in _run_code
+    File "d:\esp\tools\python_env\idf5.3_py3.11_env\Lib\site-packages\idf_component_manager\prepare_components\__main__.py", line 6, in <module>
+      main()
+    File "d:\esp\tools\python_env\idf5.3_py3.11_env\Lib\site-packages\idf_component_manager\prepare_components\prepare.py", line 130, in main
+      args.func(args)
+    File "d:\esp\tools\python_env\idf5.3_py3.11_env\Lib\site-packages\idf_component_manager\prepare_components\prepare.py", line 41, in inject_requirements
+      ).inject_requirements(
+        ^^^^^^^^^^^^^^^^^^^^
+    File "d:\esp\tools\python_env\idf5.3_py3.11_env\Lib\site-packages\idf_component_manager\core.py", line 98, in wrapper
+      return func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "d:\esp\tools\python_env\idf5.3_py3.11_env\Lib\site-packages\idf_component_manager\core.py", line 835, in inject_requirements
+      requirements = requirements_manager.load()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "d:\esp\tools\python_env\idf5.3_py3.11_env\Lib\site-packages\idf_component_manager\cmake_component_requirements.py", line 95, in load
+      with open(self.path, encoding='utf-8') as f:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  FileNotFoundError: [Errno 2] No such file or directory:
+  'D:/AIFARM/ESP_IDF/esp_communication/nvs_storage/build/component_requires.temp.cmake'
+
+
+Call Stack (most recent call first):
+  D:/esp/esp-idf/v5.3/esp-idf/tools/cmake/build.cmake:586 (__component_get_requirements)
+  D:/esp/esp-idf/v5.3/esp-idf/tools/cmake/project.cmake:710 (idf_build_process)
+  CMakeLists.txt:8 (project)
+
+
