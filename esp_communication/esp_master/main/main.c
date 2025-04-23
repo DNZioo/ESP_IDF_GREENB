@@ -248,7 +248,7 @@ size_t crc8_append(uint8_t *data, size_t len) {
 // Verify that received buffer has correct CRC
 bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
     uint8_t remainder = crc8_compute(data, len_with_crc);
-    ESP_LOGI(TAG, "CRC: 0x%02X", remainder);
+    ESP_LOGI(TAG, "Verify CRC: 0x%02X", remainder);
     return remainder == 0;
 }
 
@@ -299,6 +299,7 @@ static void tcp_client_task(void *pvParameters) {
 
         // Send the message with CRC
         int err = send(sock, output_buffer, total_len, 0);
+        ESP_LOGI(TAG, "Sent: %s 0x%02X", tcp_payload, output_buffer[total_len - 1]);
         if (err < 0) {
             ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
             close(sock);
@@ -306,33 +307,28 @@ static void tcp_client_task(void *pvParameters) {
             vTaskDelay(2000 / portTICK_PERIOD_MS);
             continue;
         }
-        ESP_LOGI(TAG, "Sent: %s", tcp_payload);
-        ESP_LOGI(TAG, "Sent CRC: 0x%02X", output_buffer[total_len - 1]);
 
         // Wait for a response from the server
         uint8_t buffer[256];
         int len = recv(sock, buffer, sizeof(buffer) - 1, 0);
-        if (len <= 0) {
-            if (len < 0) {
-                ESP_LOGE(TAG, "Receive failed: errno %d", errno);
+        if (len > 0) {
+            if (len >= 1) {
+                uint8_t crc_byte = buffer[len - 1];
+                size_t data_len = len - 1;
+
+                ESP_LOGI(TAG, "Received: %.*s 0x%02X", data_len, buffer, crc_byte);  // Logging raw data + CRC
+
+                if (crc8_verify(buffer, len)) {
+                    ESP_LOGI(TAG, "CRC8 verified successfully.");
+                    buffer[data_len] = '\0';  // Null-terminate *after* CRC check
+                } else {
+                    ESP_LOGE(TAG, "CRC8 verification failed.");
+                }
+
             } else {
-                ESP_LOGW(TAG, "Connection closed by server");
+                ESP_LOGW(TAG, "Received empty message.");
             }
-            close(sock);
-            connected = false;
-            vTaskDelay(2000 / portTICK_PERIOD_MS);
-            continue;
         }
-
-        // Check CRC
-        if (crc8_verify(buffer, len)) {
-            ESP_LOGI(TAG, "CRC8 verified successfully.");
-            buffer[len - 1] = '\0';  // Remove CRC and null-terminate
-            ESP_LOGI(TAG, "Received: %s", buffer);
-        } else {
-            ESP_LOGE(TAG, "CRC8 verification failed.");
-        }
-
         vTaskDelay(2000 / portTICK_PERIOD_MS);
     }
 }

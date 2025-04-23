@@ -217,7 +217,7 @@ size_t crc8_append(uint8_t *data, size_t len) {
 // Verify that received buffer has correct CRC
 bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
     uint8_t remainder = crc8_compute(data, len_with_crc);
-    ESP_LOGI(TAG, "CRC: 0x%02X", remainder);
+    ESP_LOGI(TAG, "Verify CRC: 0x%02X", remainder);
     return remainder == 0;
 }
 // ============================ TCP Task Function ============================
@@ -275,6 +275,7 @@ void tcp_server_task(void *pvParameters) {
         while (1) {
             uint8_t buffer[256];
             int len = recv(clientSock, buffer, sizeof(buffer) - 1, 0);
+            
             if (len < 0) {
                 ESP_LOGE(TAG, "recv failed: errno %d", errno);
                 close(clientSock);
@@ -283,34 +284,37 @@ void tcp_server_task(void *pvParameters) {
                 ESP_LOGI(TAG, "Connection closed");
                 close(clientSock);
                 break;
-            } else {
-                // Verify CRC of received data
+            } else if (len >= 1) {
+                uint8_t crc_byte = buffer[len - 1];
+                size_t data_len = len - 1;
+            
+                ESP_LOGI(TAG, "Received: %.*s 0x%02X", data_len, buffer, crc_byte);  // Log message and CRC
+            
+                // Verify CRC once
                 if (crc8_verify(buffer, len)) {
-                    ESP_LOGI(TAG, "CRC verified successfully.");
-
-                    size_t data_len = len - 1;
-                    
-                    buffer[data_len] = '\0'; // Null-terminate the actual data
-                    ESP_LOGI(TAG, "Received: %s", buffer);
-
+                    ESP_LOGI(TAG, "CRC8 verified successfully.");
+                    buffer[data_len] = '\0';  // Null-terminate after CRC check
+            
                     // Prepare a response with CRC
                     const char *response = "Hello PUMP";
                     size_t response_len = strlen(response);
                     uint8_t output_buffer[response_len + 1]; 
                     memcpy(output_buffer, response, response_len);
-                    size_t total_len = crc8_append(output_buffer, response_len); 
-                    
-                    ESP_LOGI(TAG, "Sending response: %s | CRC: 0x%02X", response, output_buffer[total_len - 1]);
-
-                    // Send the response with CRC
+                    size_t total_len = crc8_append(output_buffer, response_len);
+            
                     int sent = send(clientSock, output_buffer, total_len, 0);
                     if (sent < 0) {
                         ESP_LOGE(TAG, "Error sending response: errno %d", errno);
+                    } else {
+                        ESP_LOGI(TAG, "Send: %s 0x%02X", response, output_buffer[total_len - 1]);
                     }
+            
                 } else {
-                    ESP_LOGE(TAG, "CRC verification failed.");
+                    ESP_LOGE(TAG, "CRC8 verification failed.");
                 }
-            }
+            } else {
+                ESP_LOGW(TAG, "Received empty message.");
+            }                     
         }
     }
 }
