@@ -13,5 +13,9 @@
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\esp\\tools\\tools\\esp-rom-elfs\\20240305/",
         "IDF_TARGET": "esp32s3"
+    },
+    "files.associations": {
+        "esp_crc.h": "c",
+        "esp_rom_crc.h": "c"
     }
 }
