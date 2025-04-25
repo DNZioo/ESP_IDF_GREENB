@@ -20,6 +20,7 @@
 #define TCP_PORT 5555
 #define RESPONSE_DELAY_MS 5000  
 #define IP_CHANGED_BIT BIT0
+#define NET_HOUSE_IP "01"
 
 static EventGroupHandle_t wifi_event_group;
 static char current_ip  [16] = {0};
@@ -29,6 +30,13 @@ static char last_Pump_IP[16] = {0};
 
 static const char *TAG = "ESP_NETHouse";
 
+#pragma pack(push, 1)  // Ensure no padding between struct members
+typedef struct {
+    uint8_t id;       // Device ID (e.g., 01 for nethouse)
+    uint8_t command;  // Command byte (e.g., 0x00, 0x01, etc.)
+    uint8_t crc;      // CRC-8 checksum (computed over id + command)
+} frame_t;
+#pragma pack(pop)      // Restore default struct alignment
 
 // ============================ NVS Utility ============================
 
@@ -178,7 +186,7 @@ void udp_responder_task(void *pvParameters) {
             };
 
             char reply_msg[64];
-            snprintf(reply_msg, sizeof(reply_msg), "01:%s", current_ip);
+            snprintf(reply_msg, sizeof(reply_msg), "%s:%s", NET_HOUSE_IP, current_ip);
 
             int sent = sendto(sock, reply_msg, strlen(reply_msg), 0, (struct sockaddr *)&reply_addr, sizeof(reply_addr));
             if (sent > 0) {
