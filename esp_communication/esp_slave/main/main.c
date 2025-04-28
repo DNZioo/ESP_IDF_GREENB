@@ -20,23 +20,20 @@
 #define TCP_PORT 5555
 #define RESPONSE_DELAY_MS 5000  
 #define IP_CHANGED_BIT BIT0
-#define NET_HOUSE_IP "01"
+#define NET_HOUSE_ID 0x01
 
 static EventGroupHandle_t wifi_event_group;
 static char current_ip  [16] = {0};
 static char previous_ip [16] = {0};
 static char last_Pump_IP[16] = {0};
 
-
 static const char *TAG = "ESP_NETHouse";
 
-#pragma pack(push, 1)  // Ensure no padding between struct members
 typedef struct {
     uint8_t id;       // Device ID (e.g., 01 for nethouse)
     uint8_t command;  // Command byte (e.g., 0x00, 0x01, etc.)
     uint8_t crc;      // CRC-8 checksum (computed over id + command)
 } frame_t;
-#pragma pack(pop)      // Restore default struct alignment
 
 // ============================ NVS Utility ============================
 
@@ -159,7 +156,7 @@ void udp_responder_task(void *pvParameters) {
     bool responded_to_pump = false;
 
     while (1) {
-
+        // wait for IP_CHANGED_BIT to be set
         if (xEventGroupWaitBits(wifi_event_group, IP_CHANGED_BIT, pdTRUE, pdFALSE, 0)) {
             responded_to_pump = false;
         }
@@ -186,7 +183,8 @@ void udp_responder_task(void *pvParameters) {
             };
 
             char reply_msg[64];
-            snprintf(reply_msg, sizeof(reply_msg), "%s:%s", NET_HOUSE_IP, current_ip);
+            // snprintf(reply_msg, sizeof(reply_msg), "%s:%s", NET_HOUSE_ID, current_ip);
+            snprintf(reply_msg, sizeof(reply_msg), "%02X:%s", NET_HOUSE_ID, current_ip);
 
             int sent = sendto(sock, reply_msg, strlen(reply_msg), 0, (struct sockaddr *)&reply_addr, sizeof(reply_addr));
             if (sent > 0) {
@@ -229,15 +227,12 @@ bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
     return remainder == 0;
 }
 // ============================ TCP Task Function ============================
-
 void tcp_server_task(void *pvParameters) {
-    const char *payload = "Hello PUMP!";
     struct sockaddr_in destAddr;
     destAddr.sin_addr.s_addr = htonl(INADDR_ANY);
     destAddr.sin_family = AF_INET;
     destAddr.sin_port = htons(TCP_PORT);
 
-    // Create a socket
     int sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
     if (sock < 0) {
         ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
@@ -245,7 +240,6 @@ void tcp_server_task(void *pvParameters) {
         return;
     }
 
-    // Bind the socket
     int err = bind(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
     if (err != 0) {
         ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
@@ -254,8 +248,7 @@ void tcp_server_task(void *pvParameters) {
         return;
     }
 
-    // Listen for incoming connections
-    err = listen(sock, 1);
+    err = listen(sock, 5); // Allow up to 5 pending connections
     if (err != 0) {
         ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
         close(sock);
@@ -266,7 +259,6 @@ void tcp_server_task(void *pvParameters) {
     ESP_LOGI(TAG, "Socket listening");
 
     while (1) {
-        // Accept a connection
         struct sockaddr_in sourceAddr;
         uint addrLen = sizeof(sourceAddr);
         int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
@@ -275,57 +267,42 @@ void tcp_server_task(void *pvParameters) {
             continue;
         }
 
-        // Set a timeout for recv()
-        struct timeval timeout = { .tv_sec = 5, .tv_usec = 0 }; // 5-second timeout
-        setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+        while(1){
+        uint8_t recv_buffer[32] = {0};
+        int len = recv(clientSock, recv_buffer, sizeof(recv_buffer) - 1, 0);
+        if (len > 0) {
+            ESP_LOGI(TAG, "Received: 0x%02X 0x%02X 0x%02X", recv_buffer[0], recv_buffer[1], recv_buffer[2]);
 
-        // Receive data from the client
-        while (1) {
-            uint8_t buffer[256];
-            int len = recv(clientSock, buffer, sizeof(buffer) - 1, 0);
-            
-            if (len < 0) {
-                ESP_LOGE(TAG, "recv failed: errno %d", errno);
-                close(clientSock);
-                break;
-            } else if (len == 0) {
-                ESP_LOGI(TAG, "Connection closed");
-                close(clientSock);
-                break;
-            } else if (len >= 1) {
-                uint8_t crc_byte = buffer[len - 1];
-                size_t data_len = len - 1;
-            
-                ESP_LOGI(TAG, "Received: %.*s 0x%02X", data_len, buffer, crc_byte);  // Log message and CRC
-            
-                // Verify CRC once
-                if (crc8_verify(buffer, len)) {
-                    ESP_LOGI(TAG, "CRC8 verified successfully.");
-                    buffer[data_len] = '\0';  // Null-terminate after CRC check
-            
-                    // Prepare a response with CRC
-                    const char *response = "Hello PUMP";
-                    size_t response_len = strlen(response);
-                    uint8_t output_buffer[response_len + 1]; 
-                    memcpy(output_buffer, response, response_len);
-                    size_t total_len = crc8_append(output_buffer, response_len);
-            
-                    int sent = send(clientSock, output_buffer, total_len, 0);
-                    if (sent < 0) {
-                        ESP_LOGE(TAG, "Error sending response: errno %d", errno);
-                    } else {
-                        ESP_LOGI(TAG, "Send: %s 0x%02X", response, output_buffer[total_len - 1]);
-                    }
-            
-                } else {
-                    ESP_LOGE(TAG, "CRC8 verification failed.");
-                }
+
+            if (crc8_verify(recv_buffer, len)) {
+                ESP_LOGI(TAG, "CRC verified successfully");
             } else {
-                ESP_LOGW(TAG, "Received empty message.");
-            }                     
+                ESP_LOGE(TAG, "CRC verification failed");
+            }
+        } else if (len < 0) {
+            ESP_LOGE(TAG, "Error receiving data: errno %d", errno);
+        }
+
+        frame_t response_frame = {
+            .id = 0x01,
+            .command = 0xA0
+        };
+        uint8_t data[2] = {response_frame.id, response_frame.command};
+        response_frame.crc = crc8_compute(data, sizeof(data));
+
+        int sent = send(clientSock, &response_frame, sizeof(response_frame), 0);
+        if (sent < 0) {
+            ESP_LOGE(TAG, "Error sending response: errno %d", errno);
+        } else {
+            ESP_LOGI(TAG, "Sent frame: ID:0x%02X CMD:0x%02X CRC:0x%02X",
+                     response_frame.id, response_frame.command, response_frame.crc);
         }
     }
+        vTaskDelay(pdMS_TO_TICKS(RESPONSE_DELAY_MS));
+        close(clientSock);
+    }
 }
+
 
 void app_main() {
     esp_err_t ret = nvs_flash_init();
@@ -340,6 +317,6 @@ void app_main() {
     printf("Last Pump IP: %s\n", last_Pump_IP);  
 
     wifi_init_sta();
-    xTaskCreate(udp_responder_task, "udp_responder", 8192, NULL, 5, NULL);  // Increased stack size
-    xTaskCreate(tcp_server_task, "tcp_server", 8192, NULL, 5, NULL);  // Increased stack size
+    xTaskCreate(udp_responder_task, "udp_responder", 4096, NULL, 5, NULL);  // Increased stack size
+    xTaskCreate(tcp_server_task, "tcp_server", 4096, NULL, 5, NULL);  // Increased stack size
 }

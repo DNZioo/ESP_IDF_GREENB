@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "esp_slave",
-    "project_version":    "b49857b0-dirty",
+    "project_version":    "393ee265-dirty",
     "project_path":       "D:/AIFARM/ESP_IDF/esp_communication/esp_slave",
     "idf_path":           "D:/esp/esp-idf/v5.3/esp-idf",
     "build_dir":          "D:/AIFARM/ESP_IDF/esp_communication/esp_slave/build",

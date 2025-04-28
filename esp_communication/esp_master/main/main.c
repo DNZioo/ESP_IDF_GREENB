@@ -12,7 +12,6 @@
 #include "lwip/sys.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
-#include "esp_crc.h"
 
 
 #define WIFI_SSID "ESP32"
@@ -28,12 +27,10 @@
 #define IP_LENGTH 16
 #define MAX_nethouse 5
 
-int sock = -1;
-
 static const char *TAG = "ESP_PUMP";
 
 static EventGroupHandle_t wifi_event_group;
-static char current_ip[MAX_IP_LENGTH] = {0}; 
+static char current_ip [MAX_IP_LENGTH] = {0}; 
 static char previous_ip[MAX_IP_LENGTH] = {0}; 
 
 
@@ -161,8 +158,7 @@ void wifi_init_sta() {
 // ============================ UDP Broadcast ============================
 
 void udp_broadcast_task(void *pvParameters) {
-    int sock = sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
-
+    int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
     if (sock < 0) {
         ESP_LOGE(TAG, "Failed to create socket: errno %d", errno);
         vTaskDelete(NULL);
@@ -219,7 +215,7 @@ void udp_broadcast_task(void *pvParameters) {
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
         close(sock);
-    vTaskDelete(NULL);
+        vTaskDelete(NULL);
 }
 
 // ============================ CRC Computation ============================
@@ -253,21 +249,19 @@ bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
 }
 
 // ============================ TCP Task ============================
-
 static void tcp_client_task(void *pvParameters) {
-    const char *tcp_payload = "Hello nethouse!";
     int sock = -1;
     bool connected = false;
 
     while (1) {
-        // Wait until we have a valid NetHouse IP
+        xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);
+
         if (strlen(nethouse[0].ip) == 0) {
             vTaskDelay(1000 / portTICK_PERIOD_MS);
             continue;
         }
 
         if (!connected) {
-            // Create a socket
             sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
             if (sock < 0) {
                 ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
@@ -280,7 +274,6 @@ static void tcp_client_task(void *pvParameters) {
             destAddr.sin_family = AF_INET;
             destAddr.sin_port = htons(TCP_PORT);
 
-            // Connect to the server
             int err = connect(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
             if (err != 0) {
                 ESP_LOGE(TAG, "Socket unable to connect: errno %d", errno);
@@ -291,15 +284,11 @@ static void tcp_client_task(void *pvParameters) {
             connected = true;
         }
 
-        // Prepare the message with CRC8
-        size_t payload_len = strlen(tcp_payload);
-        uint8_t output_buffer[payload_len + 1];
-        memcpy(output_buffer, tcp_payload, payload_len);
-        size_t total_len = crc8_append(output_buffer, payload_len);
+        uint8_t msg[3] = {0x01, 0x02, 0x00}; // 3rd byte reserved for CRC
+        size_t msg_len = 2; // Only 2 bytes of real data
+        msg_len = crc8_append(msg, msg_len); // Now 3 bytes
 
-        // Send the message with CRC
-        int err = send(sock, output_buffer, total_len, 0);
-        ESP_LOGI(TAG, "Sent: %s 0x%02X", tcp_payload, output_buffer[total_len - 1]);
+        int err = send(sock, msg, msg_len, 0);
         if (err < 0) {
             ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
             close(sock);
@@ -307,110 +296,27 @@ static void tcp_client_task(void *pvParameters) {
             vTaskDelay(2000 / portTICK_PERIOD_MS);
             continue;
         }
+        ESP_LOGI(TAG, "Message sent: 0x%02X 0x%02X 0x%02X", msg[0], msg[1], msg[2]);
 
-        // Wait for a response from the server
         uint8_t buffer[256];
         int len = recv(sock, buffer, sizeof(buffer) - 1, 0);
         if (len > 0) {
-            if (len >= 1) {
-                uint8_t crc_byte = buffer[len - 1];
-                size_t data_len = len - 1;
-
-                ESP_LOGI(TAG, "Received: %.*s 0x%02X", data_len, buffer, crc_byte);  // Logging raw data + CRC
-
+            if (len >= 2) { // Minimum data + CRC
                 if (crc8_verify(buffer, len)) {
                     ESP_LOGI(TAG, "CRC8 verified successfully.");
-                    buffer[data_len] = '\0';  // Null-terminate *after* CRC check
+                    ESP_LOGI(TAG, "Received: 0x%02X 0x%02X 0x%02X", buffer[0], buffer[1], buffer[2]);
                 } else {
                     ESP_LOGE(TAG, "CRC8 verification failed.");
                 }
-
             } else {
-                ESP_LOGW(TAG, "Received empty message.");
+                ESP_LOGW(TAG, "Received too short message (len=%d).", len);
             }
         }
-        vTaskDelay(2000 / portTICK_PERIOD_MS);
+
+        vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
 }
 
-// static void tcp_client1_task(void *pvParameters) {
-//     const char *tcp_payload = "Hello nethouse!";
-//     int sock = -1;
-//     bool connected = false;
-
-//     while (1) {
-//         // Wait until we have a valid NetHouse IP
-//         if (strlen(nethouse[2].ip) == 0) {
-//             vTaskDelay(1000 / portTICK_PERIOD_MS);
-//             continue;
-//         }
-
-//         if (!connected) {
-//             // Create a socket
-//             sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
-//             if (sock < 0) {
-//                 ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
-//                 vTaskDelay(2000 / portTICK_PERIOD_MS);
-//                 continue;
-//             }
-
-//             struct sockaddr_in destAddr;
-//             destAddr.sin_addr.s_addr = inet_addr(nethouse[2].ip);
-//             destAddr.sin_family = AF_INET;
-//             destAddr.sin_port = htons(TCP_PORT);
-
-//             // Connect to the server
-//             int err = connect(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
-//             if (err != 0) {
-//                 ESP_LOGE(TAG, "Socket unable to connect: errno %d", errno);
-//                 close(sock);
-//                 vTaskDelay(2000 / portTICK_PERIOD_MS);
-//                 continue;
-//             }
-//             connected = true;
-//         }
-
-//         // Prepare the message with CRC8
-//         size_t payload_len = strlen(tcp_payload);
-//         uint8_t output_buffer[payload_len + 1];
-//         memcpy(output_buffer, tcp_payload, payload_len);
-//         size_t total_len = crc8_append(output_buffer, payload_len);
-
-//         // Send the message with CRC
-//         int err = send(sock, output_buffer, total_len, 0);
-//         ESP_LOGI(TAG, "Sent: %s 0x%02X", tcp_payload, output_buffer[total_len - 1]);
-//         if (err < 0) {
-//             ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
-//             close(sock);
-//             connected = false;
-//             vTaskDelay(2000 / portTICK_PERIOD_MS);
-//             continue;
-//         }
-
-//         // Wait for a response from the server
-//         uint8_t buffer[256];
-//         int len = recv(sock, buffer, sizeof(buffer) - 1, 0);
-//         if (len > 0) {
-//             if (len >= 1) {
-//                 uint8_t crc_byte = buffer[len - 1];
-//                 size_t data_len = len - 1;
-
-//                 ESP_LOGI(TAG, "Received: %.*s 0x%02X", data_len, buffer, crc_byte);  // Logging raw data + CRC
-
-//                 if (crc8_verify(buffer, len)) {
-//                     ESP_LOGI(TAG, "CRC8 verified successfully.");
-//                     buffer[data_len] = '\0';  // Null-terminate *after* CRC check
-//                 } else {
-//                     ESP_LOGE(TAG, "CRC8 verification failed.");
-//                 }
-
-//             } else {
-//                 ESP_LOGW(TAG, "Received empty message.");
-//             }
-//         }
-//         vTaskDelay(2000 / portTICK_PERIOD_MS);
-//     }
-// }
 
 void app_main() {
     esp_err_t ret = nvs_flash_init();
@@ -424,5 +330,4 @@ void app_main() {
     wifi_init_sta();
     xTaskCreate(udp_broadcast_task, "udp_server", 4096, NULL, 5, NULL);
     xTaskCreate(tcp_client_task, "tcp_client", 4096, NULL, 5, NULL);
-    // xTaskCreate(tcp_client1_task, "tcp_client1", 4096, NULL, 5, NULL);
 }
