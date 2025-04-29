@@ -11,6 +11,7 @@
 #include "lwip/sockets.h"
 #include "lwip/netdb.h"
 #include "lwip/sys.h"
+#include "driver/uart.h"
 #include "esp_log.h"
 
 
@@ -22,12 +23,26 @@
 #define IP_CHANGED_BIT BIT0
 #define NET_HOUSE_ID 0x01
 
-static EventGroupHandle_t wifi_event_group;
+#define UART_NUM UART_NUM_1
+#define UART_TX_PIN 17
+#define UART_RX_PIN 16
+#define UART_BAUD_RATE 115200
+
+
 static char current_ip  [16] = {0};
 static char previous_ip [16] = {0};
 static char last_Pump_IP[16] = {0};
 
-static const char *TAG = "ESP_NETHouse";
+
+static const char *TAG      = "ESP_NETHouse";
+static const char *TAG_WIFI = "WIFI";
+static const char *TAG_UART = "UART_TASK";
+static const char *TAG_TCP  = "TCP_TASK";
+static const char *TAG_UDP  = "UDP_TASK";
+static const char *TAG_NVS  = "NVS";
+static const char *TAG_CRC  = "CRC";
+
+static EventGroupHandle_t wifi_event_group;
 
 typedef struct {
     uint8_t id;       // Device ID (e.g., 01 for nethouse)
@@ -43,13 +58,13 @@ void load_previous_ip_from_nvs(char *buffer, size_t len) {
     if (err == ESP_OK) {
         err = nvs_get_str(handle, "last_ip", buffer, &len);
         if (err == ESP_OK) {
-            ESP_LOGI(TAG, "Loaded previous IP from NVS: %s", buffer);
+            ESP_LOGI(TAG_NVS, "Loaded previous IP from NVS: %s", buffer);
         } else {
-            ESP_LOGW(TAG, "No previous IP stored in NVS.");
+            ESP_LOGW(TAG_NVS, "No previous IP stored in NVS.");
         }
         nvs_close(handle);
     } else {
-        ESP_LOGE(TAG, "Failed to open NVS: %s", esp_err_to_name(err));
+        ESP_LOGE(TAG_NVS, "Failed to open NVS: %s", esp_err_to_name(err));
     }
 }
 
@@ -60,9 +75,9 @@ void save_current_ip_to_nvs(const char *ip) {
         nvs_set_str(handle, "last_ip", ip);
         nvs_commit(handle);
         nvs_close(handle);
-        ESP_LOGI(TAG, "Saved current IP to NVS: %s", ip);
+        ESP_LOGI(TAG_NVS, "Saved current IP to NVS: %s", ip);
     } else {
-        ESP_LOGE(TAG, "Failed to write to NVS: %s", esp_err_to_name(err));
+        ESP_LOGE(TAG_NVS, "Failed to write to NVS: %s", esp_err_to_name(err));
     }
 }
 
@@ -74,7 +89,7 @@ void save_pump_ip_to_nvs(const char *ip) {
         nvs_set_str(handle, "last_pump_ip", ip);
         nvs_commit(handle);
         nvs_close(handle);
-        ESP_LOGI(TAG, "Saved pump IP to NVS: %s", ip);
+        ESP_LOGI(TAG_NVS, "Saved pump IP to NVS: %s", ip);
     }
 }
 
@@ -84,7 +99,7 @@ void load_pump_ip_from_nvs(char *buffer, size_t len) {
     if (err == ESP_OK) {
         err = nvs_get_str(handle, "last_pump_ip", buffer, &len);
         if (err == ESP_OK) {
-            ESP_LOGI(TAG, "Loaded pump IP from NVS: %s", buffer);
+            ESP_LOGI(TAG_NVS, "Loaded pump IP from NVS: %s", buffer);
         }
         nvs_close(handle);
     }
@@ -97,7 +112,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
         esp_wifi_connect();
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         esp_wifi_connect();
-        ESP_LOGE(TAG, "Retry to connect to the AP");
+        ESP_LOGE(TAG_WIFI, "Retry to connect to the AP");
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         strncpy(current_ip, ip4addr_ntoa(&event->ip_info.ip), sizeof(current_ip) - 1);
@@ -108,7 +123,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
         printf("Current IP: %s || Previous IP: %s\n", current_ip, previous_ip);
         if (strcmp(current_ip, previous_ip) != 0) {
             xEventGroupSetBits(wifi_event_group, IP_CHANGED_BIT);
-            ESP_LOGI(TAG, "IP changed: %s to %s", previous_ip, current_ip);
+            ESP_LOGI(TAG_WIFI, "IP changed: %s to %s", previous_ip, current_ip);
         }
     }
 }
@@ -169,7 +184,7 @@ void udp_responder_task(void *pvParameters) {
         if (len > 0) {
             buffer[len] = '\0';
                 const char *pump_ip = inet_ntoa(pump_addr.sin_addr);
-                ESP_LOGI(TAG, "Received: %s", pump_ip);
+                ESP_LOGI(TAG_UDP, "Received: %s", pump_ip);
                 strcpy(last_Pump_IP, pump_ip);
                 save_pump_ip_to_nvs(last_Pump_IP);
                 responded_to_pump = false;  // reset flag for new pump IP
@@ -188,7 +203,7 @@ void udp_responder_task(void *pvParameters) {
 
             int sent = sendto(sock, reply_msg, strlen(reply_msg), 0, (struct sockaddr *)&reply_addr, sizeof(reply_addr));
             if (sent > 0) {
-                ESP_LOGI(TAG, "Respond: %s", reply_msg);
+                ESP_LOGI(TAG_UDP, "Respond: %s", reply_msg);
                 responded_to_pump = true;
             }
             vTaskDelay(pdMS_TO_TICKS(1000));
@@ -223,7 +238,7 @@ size_t crc8_append(uint8_t *data, size_t len) {
 // Verify that received buffer has correct CRC
 bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
     uint8_t remainder = crc8_compute(data, len_with_crc);
-    ESP_LOGI(TAG, "Verify CRC: 0x%02X", remainder);
+    ESP_LOGI(TAG_CRC, "Verify CRC: 0x%02X", remainder);
     return remainder == 0;
 }
 // ============================ TCP Task Function ============================
@@ -235,14 +250,14 @@ void tcp_server_task(void *pvParameters) {
 
     int sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
     if (sock < 0) {
-        ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
+        ESP_LOGE(TAG_TCP, "Unable to create socket: errno %d", errno);
         vTaskDelete(NULL);
         return;
     }
 
     int err = bind(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
     if (err != 0) {
-        ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
+        ESP_LOGE(TAG_TCP, "Socket unable to bind: errno %d", errno);
         close(sock);
         vTaskDelete(NULL);
         return;
@@ -250,20 +265,20 @@ void tcp_server_task(void *pvParameters) {
 
     err = listen(sock, 5); // Allow up to 5 pending connections
     if (err != 0) {
-        ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
+        ESP_LOGE(TAG_TCP, "Error occurred during listen: errno %d", errno);
         close(sock);
         vTaskDelete(NULL);
         return;
     }
 
-    ESP_LOGI(TAG, "Socket listening");
+    ESP_LOGI(TAG_TCP, "Socket listening");
 
     while (1) {
         struct sockaddr_in sourceAddr;
         uint addrLen = sizeof(sourceAddr);
         int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
         if (clientSock < 0) {
-            ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
+            ESP_LOGE(TAG_TCP, "Unable to accept connection: errno %d", errno);
             continue;
         }
 
@@ -271,16 +286,16 @@ void tcp_server_task(void *pvParameters) {
         uint8_t recv_buffer[32] = {0};
         int len = recv(clientSock, recv_buffer, sizeof(recv_buffer) - 1, 0);
         if (len > 0) {
-            ESP_LOGI(TAG, "Received: 0x%02X 0x%02X 0x%02X", recv_buffer[0], recv_buffer[1], recv_buffer[2]);
+            ESP_LOGI(TAG_TCP, "Received: 0x%02X 0x%02X 0x%02X", recv_buffer[0], recv_buffer[1], recv_buffer[2]);
 
 
             if (crc8_verify(recv_buffer, len)) {
-                ESP_LOGI(TAG, "CRC verified successfully");
+                ESP_LOGI(TAG_TCP, "CRC verified successfully");
             } else {
-                ESP_LOGE(TAG, "CRC verification failed");
+                ESP_LOGE(TAG_TCP, "CRC verification failed");
             }
         } else if (len < 0) {
-            ESP_LOGE(TAG, "Error receiving data: errno %d", errno);
+            ESP_LOGE(TAG_TCP, "Error receiving data: errno %d", errno);
         }
 
         frame_t response_frame = {
@@ -292,14 +307,33 @@ void tcp_server_task(void *pvParameters) {
 
         int sent = send(clientSock, &response_frame, sizeof(response_frame), 0);
         if (sent < 0) {
-            ESP_LOGE(TAG, "Error sending response: errno %d", errno);
+            ESP_LOGE(TAG_TCP, "Error sending response: errno %d", errno);
         } else {
-            ESP_LOGI(TAG, "Sent frame: ID:0x%02X CMD:0x%02X CRC:0x%02X",
+            ESP_LOGI(TAG_TCP, "Sent frame: ID:0x%02X CMD:0x%02X CRC:0x%02X",
                      response_frame.id, response_frame.command, response_frame.crc);
         }
     }
         vTaskDelay(pdMS_TO_TICKS(RESPONSE_DELAY_MS));
         close(clientSock);
+    }
+}
+
+//============================== UART TASK ===============================
+void uart_task(void *pvParameters)
+{
+    uint8_t data[16];
+
+    while (1) {
+        int len = uart_read_bytes(UART_NUM, data, sizeof(data), pdMS_TO_TICKS(1000));
+        if (len > 0) {
+            ESP_LOGI(TAG_UART, "Received %d bytes:", len);
+            for (int i = 0; i < len; i++) {
+                ESP_LOGI(TAG_UART, "Byte[%d]: 0x%02X", i, data[i]);
+            }
+
+            // Echo back the received data
+            uart_write_bytes(UART_NUM, (const char *)data, len);
+        }
     }
 }
 
@@ -316,7 +350,22 @@ void app_main() {
     load_pump_ip_from_nvs(last_Pump_IP, sizeof(last_Pump_IP));
     printf("Last Pump IP: %s\n", last_Pump_IP);  
 
+    // Initialize UART
+    uart_config_t uart_config = {
+        .baud_rate = UART_BAUD_RATE,
+        .data_bits = UART_DATA_8_BITS,
+        .parity    = UART_PARITY_DISABLE,
+        .stop_bits = UART_STOP_BITS_1,
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+    };
+    uart_driver_install(UART_NUM, 1024, 0, 0, NULL, 0);
+    uart_param_config(UART_NUM, &uart_config);
+    uart_set_pin(UART_NUM, UART_TX_PIN, UART_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+
     wifi_init_sta();
+
+    // Create tasks
     xTaskCreate(udp_responder_task, "udp_responder", 4096, NULL, 5, NULL);  // Increased stack size
     xTaskCreate(tcp_server_task, "tcp_server", 4096, NULL, 5, NULL);  // Increased stack size
+    xTaskCreate(uart_task, "uart_task", 2048, NULL, 5, NULL);  // Increased stack size
 }

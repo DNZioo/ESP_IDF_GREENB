@@ -28,6 +28,10 @@
 #define MAX_nethouse 5
 
 static const char *TAG = "ESP_PUMP";
+static const char *TAG_TCP = "TCP";
+static const char *TAG_UDP = "UDP";
+static const char *TAG_WIFI = "WIFI";
+static const char *TAG_NVS = "NVS";
 
 static EventGroupHandle_t wifi_event_group;
 static char current_ip [MAX_IP_LENGTH] = {0}; 
@@ -87,9 +91,9 @@ void load_previous_ip_from_nvs(char *buffer, size_t len) {
     if (err == ESP_OK) {
         err = nvs_get_str(handle, "last_ip", buffer, &len);
         if (err == ESP_OK) {
-            ESP_LOGI(TAG, "Loaded previous IP from NVS: %s", buffer);
+            ESP_LOGI(TAG_NVS, "Loaded previous IP from NVS: %s", buffer);
         } else {
-            ESP_LOGW(TAG, "No previous IP stored in NVS.");
+            ESP_LOGW(TAG_NVS, "No previous IP stored in NVS.");
         }
         nvs_close(handle);
     }
@@ -102,9 +106,9 @@ void save_current_ip_to_nvs(const char *ip) {
         nvs_set_str(handle, "last_ip", ip);
         nvs_commit(handle);
         nvs_close(handle);
-        ESP_LOGI(TAG, "Saved current IP to NVS: %s", ip);
+        ESP_LOGI(TAG_NVS, "Saved current IP to NVS: %s", ip);
     } else {
-        ESP_LOGE(TAG, "Failed to write to NVS: %s", esp_err_to_name(err));
+        ESP_LOGE(TAG_NVS, "Failed to write to NVS: %s", esp_err_to_name(err));
     }
 }
 
@@ -117,7 +121,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
         esp_wifi_connect();
-        ESP_LOGE(TAG, "Retry to connect to the AP");
+        ESP_LOGE(TAG_WIFI, "Retry to connect to the AP");
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         strncpy(current_ip, ip4addr_ntoa(&event->ip_info.ip), MAX_IP_LENGTH - 1);
@@ -126,7 +130,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
         //load and save IP addresses
         load_previous_ip_from_nvs(previous_ip, sizeof(previous_ip));
         save_current_ip_to_nvs(current_ip);
-        ESP_LOGI(TAG, "IP changed: %s to %s", current_ip, previous_ip);
+        ESP_LOGI(TAG_WIFI, "IP changed: %s to %s", current_ip, previous_ip);
         printf("Current IP: %s || Previous IP: %s\n", current_ip, previous_ip);
 
         //Signal that WIFI is connected
@@ -160,7 +164,7 @@ void wifi_init_sta() {
 void udp_broadcast_task(void *pvParameters) {
     int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
     if (sock < 0) {
-        ESP_LOGE(TAG, "Failed to create socket: errno %d", errno);
+        ESP_LOGE(TAG_UDP, "Failed to create socket: errno %d", errno);
         vTaskDelete(NULL);
     }
     int broadcast_enable = 1;  //enable broadcast
@@ -192,7 +196,7 @@ void udp_broadcast_task(void *pvParameters) {
         if (strcmp(previous_ip, current_ip) != 0 || !nethouse_responded) {
             sendto(sock, current_ip, strlen(current_ip), 0, (struct sockaddr *)&broadcast_addr, sizeof(broadcast_addr));
             strncpy(previous_ip, current_ip, sizeof(previous_ip) - 1);
-            ESP_LOGI(TAG, "Broadcasting: %s", current_ip);
+            ESP_LOGI(TAG_UDP, "Broadcasting: %s", current_ip);
         }
         
         struct sockaddr_in slave_addr;
@@ -204,11 +208,11 @@ void udp_broadcast_task(void *pvParameters) {
             response[received] = '\0';
             // Handle the response
             handle_nethouse_response(response, inet_ntoa(slave_addr.sin_addr)); //ip from socket
-            ESP_LOGI(TAG, "%s:%s",nethouse[0].id, nethouse[0].ip);
-            ESP_LOGI(TAG, "%s:%s",nethouse[1].id, nethouse[1].ip);
-            ESP_LOGI(TAG, "%s:%s",nethouse[2].id, nethouse[2].ip);
-            ESP_LOGI(TAG, "%s:%s",nethouse[3].id, nethouse[3].ip);
-            ESP_LOGI(TAG, "%s:%s",nethouse[4].id, nethouse[4].ip);
+            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[0].id, nethouse[0].ip);
+            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[1].id, nethouse[1].ip);
+            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[2].id, nethouse[2].ip);
+            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[3].id, nethouse[3].ip);
+            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[4].id, nethouse[4].ip);
             nethouse_responded = true;
         }
 
@@ -264,7 +268,7 @@ static void tcp_client_task(void *pvParameters) {
         if (!connected) {
             sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
             if (sock < 0) {
-                ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
+                ESP_LOGE(TAG_TCP, "Unable to create socket: errno %d", errno);
                 vTaskDelay(2000 / portTICK_PERIOD_MS);
                 continue;
             }
@@ -276,7 +280,7 @@ static void tcp_client_task(void *pvParameters) {
 
             int err = connect(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
             if (err != 0) {
-                ESP_LOGE(TAG, "Socket unable to connect: errno %d", errno);
+                ESP_LOGE(TAG_TCP, "Socket unable to connect: errno %d", errno);
                 close(sock);
                 vTaskDelay(2000 / portTICK_PERIOD_MS);
                 continue;
@@ -290,26 +294,26 @@ static void tcp_client_task(void *pvParameters) {
 
         int err = send(sock, msg, msg_len, 0);
         if (err < 0) {
-            ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
+            ESP_LOGE(TAG_TCP, "Error occurred during sending: errno %d", errno);
             close(sock);
             connected = false;
             vTaskDelay(2000 / portTICK_PERIOD_MS);
             continue;
         }
-        ESP_LOGI(TAG, "Message sent: 0x%02X 0x%02X 0x%02X", msg[0], msg[1], msg[2]);
+        ESP_LOGI(TAG_TCP, "Message sent: 0x%02X 0x%02X 0x%02X", msg[0], msg[1], msg[2]);
 
         uint8_t buffer[256];
         int len = recv(sock, buffer, sizeof(buffer) - 1, 0);
         if (len > 0) {
             if (len >= 2) { // Minimum data + CRC
                 if (crc8_verify(buffer, len)) {
-                    ESP_LOGI(TAG, "CRC8 verified successfully.");
-                    ESP_LOGI(TAG, "Received: 0x%02X 0x%02X 0x%02X", buffer[0], buffer[1], buffer[2]);
+                    ESP_LOGI(TAG_TCP, "CRC8 verified successfully.");
+                    ESP_LOGI(TAG_TCP, "Received: 0x%02X 0x%02X 0x%02X", buffer[0], buffer[1], buffer[2]);
                 } else {
-                    ESP_LOGE(TAG, "CRC8 verification failed.");
+                    ESP_LOGE(TAG_TCP, "CRC8 verification failed.");
                 }
             } else {
-                ESP_LOGW(TAG, "Received too short message (len=%d).", len);
+                ESP_LOGW(TAG_TCP, "Received too short message (len=%d).", len);
             }
         }
 
