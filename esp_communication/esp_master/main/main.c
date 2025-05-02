@@ -253,74 +253,97 @@ bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
 }
 
 // ============================ TCP Task ============================
-static void tcp_client_task(void *pvParameters) {
-    int sock = -1;
-    bool connected = false;
+
+
+void tcp_server_task(void *pvParameters) {
+    xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);
+    struct sockaddr_in destAddr;
+    destAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    destAddr.sin_family = AF_INET;
+    destAddr.sin_port = htons(TCP_PORT);
+
+    int sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
+    if (sock < 0) {
+        ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
+        vTaskDelete(NULL);
+        return;
+    }
+    // Set socket to reuse address
+    int opt = 1;
+    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+
+    int err = bind(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
+    if (err != 0) {
+        ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
+        close(sock);
+        vTaskDelete(NULL);
+        return;
+    }
+
+    err = listen(sock, 1);
+    if (err != 0) {
+        ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
+        close(sock);
+        vTaskDelete(NULL);
+        return;
+    }
+    ESP_LOGI(TAG, "Socket listening");
 
     while (1) {
-        xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);
-
-        if (strlen(nethouse[0].ip) == 0) {
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
+        //Accept incoming connection
+        struct sockaddr_in sourceAddr;
+        uint addrLen = sizeof(sourceAddr);
+        int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
+        if (clientSock < 0) {
+            ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
             continue;
         }
 
-        if (!connected) {
-            sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
-            if (sock < 0) {
-                ESP_LOGE(TAG_TCP, "Unable to create socket: errno %d", errno);
-                vTaskDelay(2000 / portTICK_PERIOD_MS);
-                continue;
-            }
+        char clientIP[16];
+        inet_ntoa_r(sourceAddr.sin_addr, clientIP, sizeof(clientIP));
+        ESP_LOGI(TAG, "Client connected from IP: %s, port: %d", clientIP, ntohs(sourceAddr.sin_port));
+        // Set a timeout for recv()
+        struct timeval timeout = { .tv_sec = 10, .tv_usec = 0 }; // 5-second timeout
+        setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
 
-            struct sockaddr_in destAddr;
-            destAddr.sin_addr.s_addr = inet_addr(nethouse[0].ip);
-            destAddr.sin_family = AF_INET;
-            destAddr.sin_port = htons(TCP_PORT);
-
-            int err = connect(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
-            if (err != 0) {
-                ESP_LOGE(TAG_TCP, "Socket unable to connect: errno %d", errno);
-                close(sock);
-                vTaskDelay(2000 / portTICK_PERIOD_MS);
-                continue;
-            }
-            connected = true;
-        }
-
-        uint8_t msg[3] = {0x01, 0x02, 0x00}; // 3rd byte reserved for CRC
-        size_t msg_len = 2; // Only 2 bytes of real data
-        msg_len = crc8_append(msg, msg_len); // Now 3 bytes
-
-        int err = send(sock, msg, msg_len, 0);
-        if (err < 0) {
-            ESP_LOGE(TAG_TCP, "Error occurred during sending: errno %d", errno);
-            close(sock);
-            connected = false;
-            vTaskDelay(2000 / portTICK_PERIOD_MS);
-            continue;
-        }
-        ESP_LOGI(TAG_TCP, "Message sent: 0x%02X 0x%02X 0x%02X", msg[0], msg[1], msg[2]);
-
-        uint8_t buffer[256];
-        int len = recv(sock, buffer, sizeof(buffer) - 1, 0);
-        if (len > 0) {
-            if (len >= 2) { // Minimum data + CRC
-                if (crc8_verify(buffer, len)) {
-                    ESP_LOGI(TAG_TCP, "CRC8 verified successfully.");
-                    ESP_LOGI(TAG_TCP, "Received: 0x%02X 0x%02X 0x%02X", buffer[0], buffer[1], buffer[2]);
-                } else {
-                    ESP_LOGE(TAG_TCP, "CRC8 verification failed.");
-                }
-            } else {
-                ESP_LOGW(TAG_TCP, "Received too short message (len=%d).", len);
+        while (1) {
+        // Receive data from client
+        uint8_t rx_buffer[64] = {0};
+        int len = recv(clientSock, rx_buffer, sizeof(rx_buffer) - 1, 0);
+        if (len < 0) {
+            ESP_LOGE(TAG_TCP, "recv failed: errno %d", errno);
+            break;
+        } else if (len == 0) {
+            ESP_LOGI(TAG_TCP, "Connection closed");
+            break;
+        } else {
+            rx_buffer[len] = 0; // Null-terminate the received data
+            ESP_LOGI(TAG_TCP, "Received %d bytes: %s", len, rx_buffer);
+            
+            // Verify CRC
+            if (!crc8_verify(rx_buffer, len)) {
+                ESP_LOGE(TAG_TCP, "CRC verification failed");
+                break;
             }
         }
+        // Send message prepared with CRC
+        // uint8_t msg[3] = {0x01, 0x02, 0x00}; // 3rd byte reserved for CRC
+        // size_t msg_len = 2; // Only 2 bytes of real data
+        // msg_len = crc8_append(msg, msg_len); 
 
-        vTaskDelay(5000 / portTICK_PERIOD_MS);
+        // int err = send(clientSock, msg, msg_len, 0);
+        // if (err < 0) {
+        //     ESP_LOGE(TAG_TCP, "Error occurred during sending: errno %d", errno);
+        //     close(sock);
+        //     vTaskDelay(2000 / portTICK_PERIOD_MS);
+        //     continue;
+        // }
+        // ESP_LOGI(TAG_TCP, "Message sent: 0x%02X 0x%02X 0x%02X", msg[0], msg[1], msg[2]);
+        }
     }
 }
 
+// ============================ Main Function ============================
 
 void app_main() {
     esp_err_t ret = nvs_flash_init();
@@ -333,5 +356,5 @@ void app_main() {
 
     wifi_init_sta();
     xTaskCreate(udp_broadcast_task, "udp_server", 4096, NULL, 5, NULL);
-    xTaskCreate(tcp_client_task, "tcp_client", 4096, NULL, 5, NULL);
+    xTaskCreate(tcp_server_task, "tcp_server", 4096, NULL, 5, NULL);
 }
