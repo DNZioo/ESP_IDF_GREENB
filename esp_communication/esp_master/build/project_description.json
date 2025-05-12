@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "esp_master",
-    "project_version":    "1262f7c5-dirty",
+    "project_version":    "118f87f1-dirty",
     "project_path":       "D:/AIFARM/ESP_IDF/esp_communication/esp_master",
     "idf_path":           "D:/esp/esp-idf/v5.3/esp-idf",
     "build_dir":          "D:/AIFARM/ESP_IDF/esp_communication/esp_master/build",

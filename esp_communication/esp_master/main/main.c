@@ -12,7 +12,7 @@
 #include "lwip/sys.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
-
+#include "driver/uart.h"
 
 #define WIFI_SSID "ESP32"
 #define WIFI_PASS "11112222"
@@ -27,61 +27,37 @@
 #define IP_LENGTH 16
 #define MAX_nethouse 5
 
+
+//UART PINs configuration
+#define TXD_PIN (GPIO_NUM_17)
+#define RXD_PIN (GPIO_NUM_16)
+#define UART_NUM UART_NUM_1
+#define UART_BAUD_RATE 115200
+
 static const char *TAG = "ESP_PUMP";
 static const char *TAG_TCP = "TCP";
 static const char *TAG_UDP = "UDP";
 static const char *TAG_WIFI = "WIFI";
+static const char *TAG_UART = "UART";
 static const char *TAG_NVS = "NVS";
 
 static EventGroupHandle_t wifi_event_group;
+TaskHandle_t tcp_task_handle = NULL;
+
 static char current_ip [MAX_IP_LENGTH] = {0}; 
 static char previous_ip[MAX_IP_LENGTH] = {0}; 
 
+//crc remainder
+static uint8_t remainder = 0x00; // CRC remainder
 
 // ============================ Handle Net Houses ============================
 
 typedef struct {
-    char id[ID_LENGTH]; 
-    char ip[IP_LENGTH];
-    bool active;  // to mark if this nethouse is currently responding
-    uint32_t last_seen; // timestamp of last response
-} nethouse_t;
-
-static nethouse_t nethouse[MAX_nethouse] = {
-    {"01", "", false, 0}, // Initialize with empty strings and default values
-    {"02", "", false, 0},
-    {"03", "", false, 0},
-    {"04", "", false, 0},
-    {"05", "", false, 0}
-};
-static int  num_nethouse = MAX_nethouse; // Number of nethouse currently known
-
-void handle_nethouse_response(const char* message, const char* source_ip) {
-    // Find the colon separator
-    char* colon = strchr(message, ':');
-    if (!colon) return;  // Invalid format
-    
-    // Extract ID (before colon)
-    char id[ID_LENGTH];
-    int id_length = colon - message;
-    if (id_length >= ID_LENGTH) id_length = ID_LENGTH - 1;
-    strncpy(id, message, id_length);
-    id[id_length] = '\0';
-    
-    // Find this nethouse in our array
-    for (int i = 0; i < num_nethouse; i++) {
-        if (strcmp(nethouse[i].id, id) == 0) {
-            // Update existing entry
-            strncpy(nethouse[i].ip, source_ip, IP_LENGTH - 1);
-            nethouse[i].active = true;
-            nethouse[i].last_seen = xTaskGetTickCount();
-            
-            // ESP_LOGI(TAG, "NetHouse %s:%s", id, source_ip);
-            return;
-        }
-    }
-    ESP_LOGW(TAG, "Received response from unknown NetHouse ID: %s", id);
-}
+    int sock;
+    char id[16];
+    struct sockaddr_in addr;
+} net_client_t;
+static net_client_t net_client[5] = {0};
 
 // ============================ NVS Utility ============================
 
@@ -131,11 +107,9 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
         load_previous_ip_from_nvs(previous_ip, sizeof(previous_ip));
         save_current_ip_to_nvs(current_ip);
         ESP_LOGI(TAG_WIFI, "IP changed: %s to %s", current_ip, previous_ip);
-        printf("Current IP: %s || Previous IP: %s\n", current_ip, previous_ip);
 
         //Signal that WIFI is connected
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
-        
     }
 }
 
@@ -186,36 +160,28 @@ void udp_broadcast_task(void *pvParameters) {
         .sin_addr.s_addr = inet_addr(BROADCAST_IP)
     };
 
-    bool nethouse_responded = false;
-    // char last_sent_ip[MAX_IP_LENGTH] = {0}; // Store the last sent IP address
-    
+    bool nethouse_responded = false;    
+
     while (1) {
+        xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);  
 
-    xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);  
-
+        //Send broadcast message
         if (strcmp(previous_ip, current_ip) != 0 || !nethouse_responded) {
-            sendto(sock, current_ip, strlen(current_ip), 0, (struct sockaddr *)&broadcast_addr, sizeof(broadcast_addr));
             strncpy(previous_ip, current_ip, sizeof(previous_ip) - 1);
-            ESP_LOGI(TAG_UDP, "Broadcasting: %s", current_ip);
+            sendto(sock, current_ip, strlen(current_ip), 0, (struct sockaddr *)&broadcast_addr, sizeof(broadcast_addr));
+            ESP_LOGI(TAG_UDP, "PUMP is broadcasting: %s", current_ip);
         }
         
         struct sockaddr_in slave_addr;
         socklen_t addr_len = sizeof(slave_addr);
-        char response[64];
 
-        int received = recvfrom(sock, response, sizeof(response) - 1, 0, (struct sockaddr *)&slave_addr, &addr_len);
+        uint8_t response[1] = {0};  
+        int received = recvfrom(sock, response, sizeof(response), 0, (struct sockaddr *)&slave_addr, &addr_len);
         if (received > 0) {
-            response[received] = '\0';
             // Handle the response
-            handle_nethouse_response(response, inet_ntoa(slave_addr.sin_addr)); //ip from socket
-            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[0].id, nethouse[0].ip);
-            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[1].id, nethouse[1].ip);
-            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[2].id, nethouse[2].ip);
-            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[3].id, nethouse[3].ip);
-            ESP_LOGI(TAG_UDP, "%s:%s",nethouse[4].id, nethouse[4].ip);
+            ESP_LOGI(TAG_UDP, "nethouse:%d", response[0]);
             nethouse_responded = true;
         }
-
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
         close(sock);
@@ -247,8 +213,8 @@ size_t crc8_append(uint8_t *data, size_t len) {
 
 // Verify that received buffer has correct CRC
 bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
-    uint8_t remainder = crc8_compute(data, len_with_crc);
-    ESP_LOGI(TAG, "Verify CRC: 0x%02X", remainder);
+    remainder = crc8_compute(data, len_with_crc);
+    // ESP_LOGI(TAG, "Verify CRC: 0x%02X", remainder);
     return remainder == 0;
 }
 
@@ -257,89 +223,137 @@ bool crc8_verify(const uint8_t *data, size_t len_with_crc) {
 
 void tcp_server_task(void *pvParameters) {
     xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, false, true, portMAX_DELAY);
-    struct sockaddr_in destAddr;
-    destAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    destAddr.sin_family = AF_INET;
-    destAddr.sin_port = htons(TCP_PORT);
+    
+    int pump_sock;  //Main socket for the pump
+    struct sockaddr_in pump_addr, net_addr;
+    socklen_t addr_len = sizeof(net_addr);
 
-    int sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
-    if (sock < 0) {
-        ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
+    pump_addr.sin_family = AF_INET;
+    pump_addr.sin_port = htons(TCP_PORT);
+    pump_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    pump_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
+    if (pump_sock < 0) {
+        ESP_LOGE(TAG_TCP, "Failed to create socket: errno %d", errno);
         vTaskDelete(NULL);
         return;
     }
-    // Set socket to reuse address
-    int opt = 1;
-    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
 
-    int err = bind(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
+    int err = bind(pump_sock, (struct sockaddr *)&pump_addr, sizeof(pump_addr));
     if (err != 0) {
         ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
-        close(sock);
+        close(pump_sock);
         vTaskDelete(NULL);
         return;
     }
 
-    err = listen(sock, 1);
+    err = listen(pump_sock, 5);
     if (err != 0) {
         ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
-        close(sock);
+        close(pump_sock);
         vTaskDelete(NULL);
         return;
     }
     ESP_LOGI(TAG, "Socket listening");
 
+    // Assume both clients want pump on
+    uint8_t net_cmd[1] = {0x01};
+    
     while (1) {
-        //Accept incoming connection
-        struct sockaddr_in sourceAddr;
-        uint addrLen = sizeof(sourceAddr);
-        int clientSock = accept(sock, (struct sockaddr *)&sourceAddr, &addrLen);
-        if (clientSock < 0) {
-            ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
+        
+        fd_set read_fds;                //Create a set of file descriptors
+        FD_ZERO(&read_fds);             //Initialize the set to empty
+        FD_SET(pump_sock, &read_fds);   //Add the pump socket to the set
+        int max_fd = pump_sock;         // Initialize max_fd to the pump socket
+
+        // Add client sockets to the set
+        for (int i = 0; i < 5; i++) {
+            if (net_client[i].sock > 0) {
+                FD_SET(net_client[i].sock, &read_fds);
+                if (net_client[i].sock > max_fd) max_fd = net_client[i].sock;
+            }
+        }
+
+        // Wait for activity on the sockets
+        int activity = select(max_fd + 1, &read_fds, NULL, NULL, NULL);
+        if ((activity < 0) && (errno != EINTR)) {
+            ESP_LOGE(TAG, "Select error: errno %d", errno);
             continue;
         }
 
-        char clientIP[16];
-        inet_ntoa_r(sourceAddr.sin_addr, clientIP, sizeof(clientIP));
-        ESP_LOGI(TAG, "Client connected from IP: %s, port: %d", clientIP, ntohs(sourceAddr.sin_port));
-        // Set a timeout for recv()
-        struct timeval timeout = { .tv_sec = 10, .tv_usec = 0 }; // 5-second timeout
-        setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+        //haldle new connection
+        if (FD_ISSET(pump_sock, &read_fds)) {
+            int new_socket = accept(pump_sock, (struct sockaddr *)&net_addr, &addr_len);
+            if (new_socket < 0) {
+                ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
+                continue;
+            }
+            ESP_LOGI(TAG, "New connection accepted");
 
-        while (1) {
-        // Receive data from client
-        uint8_t rx_buffer[64] = {0};
-        int len = recv(clientSock, rx_buffer, sizeof(rx_buffer) - 1, 0);
-        if (len < 0) {
-            ESP_LOGE(TAG_TCP, "recv failed: errno %d", errno);
-            break;
-        } else if (len == 0) {
-            ESP_LOGI(TAG_TCP, "Connection closed");
-            break;
-        } else {
-            rx_buffer[len] = 0; // Null-terminate the received data
-            ESP_LOGI(TAG_TCP, "Received %d bytes: %s", len, rx_buffer);
-            
-            // Verify CRC
-            if (!crc8_verify(rx_buffer, len)) {
-                ESP_LOGE(TAG_TCP, "CRC verification failed");
-                break;
+            // Receive ID from the new socket
+            uint8_t id_buffer[1] = {0};
+            int len_id = recv(new_socket, id_buffer, sizeof(id_buffer), 0);
+            if (len_id == 1) {
+                for (int i = 0; i < 5; i++) {
+                    if (net_client[i].sock == 0) {
+                        net_client[i].sock = new_socket;
+                        snprintf(net_client[i].id, sizeof(net_client[i].id), "%02X", id_buffer[0]);
+                        net_client[i].addr = net_addr;
+                        ESP_LOGI(TAG_TCP, "Registered from Net house: 0x%02X", id_buffer[0]);
+                        break;
+                    }
+                }
+            } else {
+                ESP_LOGW(TAG_TCP, "Invalid ID message from nethouse");
+                close(new_socket);
             }
         }
-        // Send message prepared with CRC
-        // uint8_t msg[3] = {0x01, 0x02, 0x00}; // 3rd byte reserved for CRC
-        // size_t msg_len = 2; // Only 2 bytes of real data
-        // msg_len = crc8_append(msg, msg_len); 
 
-        // int err = send(clientSock, msg, msg_len, 0);
-        // if (err < 0) {
-        //     ESP_LOGE(TAG_TCP, "Error occurred during sending: errno %d", errno);
-        //     close(sock);
-        //     vTaskDelay(2000 / portTICK_PERIOD_MS);
-        //     continue;
-        // }
-        // ESP_LOGI(TAG_TCP, "Message sent: 0x%02X 0x%02X 0x%02X", msg[0], msg[1], msg[2]);
+        // Handle existing connections
+        for (int i = 0; i < 5; i++) {
+            int sd = net_client[i].sock;
+            if (sd > 0 && FD_ISSET(sd, &read_fds)) {
+                uint8_t buffer[64] = {0};
+                int len_recv = recv(sd, buffer, sizeof(buffer) - 1, 0);
+                if (len_recv <= 0) {
+                    close(sd);
+                    net_client[i].sock = 0;
+                    memset(net_client[i].id, 0, sizeof(net_client[i].id));
+                    ESP_LOGI(TAG_TCP, "Client disconnected");
+                    continue;
+                } else {
+                    buffer[len_recv] = '\0';
+                    ESP_LOGI(TAG_TCP, "NETHouse:%s socket:%d:0x%02X 0x%02X 0x%02X", net_client[i].id, net_client[i].sock, buffer[0], buffer[1], buffer[2]);
+                    // Verify CRC
+                    if (crc8_verify(buffer, len_recv)) {
+                        ESP_LOGI(TAG_TCP, "CRC verify: 0x%02X 0x%02X 0x%02X", buffer[0], buffer[1], remainder);
+                        // Process the data
+                        uint8_t cmd = buffer[1];
+                        if (cmd == 0x00 || cmd == 0x01){
+                            // send uart command 
+                            uart_write_bytes(UART_NUM, &cmd, 1);
+                            net_cmd[i] = cmd;
+
+                            if (net_cmd[0] == 0x00){
+                                ESP_LOGI(TAG_TCP, "pump off");
+                            } else{
+                                ESP_LOGI(TAG_TCP, "pump on");
+                            }
+                        }
+                    } else {
+                        ESP_LOGW(TAG_TCP, "CRC is invalid");
+                    }  
+                }
+            }
+            // if (strcmp(net_client[i].id, "01") == 0) {
+            //     send(sd, "heyA", strlen("heyA"), 0);
+            //     ESP_LOGI(TAG_TCP, "Sent 'heyA' to nethouse 01");
+            // } else if (strcmp(net_client[i].id, "02") == 0) {
+            //     send(sd, "heyB", strlen("heyB"), 0);
+            //     ESP_LOGI(TAG_TCP, "Sent 'heyB' to nethouse 02");
+            // }
         }
+        vTaskDelay(pdMS_TO_TICKS(2000));
     }
 }
 
@@ -353,8 +367,21 @@ void app_main() {
     }
     ESP_ERROR_CHECK(ret); 
     wifi_event_group = xEventGroupCreate();
-
     wifi_init_sta();
+
+    // Initialize UART
+    uart_config_t uart_config = {
+        .baud_rate = UART_BAUD_RATE,
+        .data_bits = UART_DATA_8_BITS,
+        .parity    = UART_PARITY_DISABLE,
+        .stop_bits = UART_STOP_BITS_1,
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+    };
+    uart_driver_install(UART_NUM, 1024, 0, 0, NULL, 0);
+    uart_param_config(UART_NUM, &uart_config);
+    uart_set_pin(UART_NUM, TXD_PIN, RXD_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    
     xTaskCreate(udp_broadcast_task, "udp_server", 4096, NULL, 5, NULL);
     xTaskCreate(tcp_server_task, "tcp_server", 4096, NULL, 5, NULL);
+    // xTaskCreate(uart_task, "uart_task", 2048, NULL, 5, NULL);
 }
